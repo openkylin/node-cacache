@@ -1,0 +1,39 @@
+Description: disable tests that requires tap 14
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2020-03-10
+
+--- a/test/content.read.js
++++ b/test/content.read.js
+@@ -196,6 +196,7 @@
+   })
+ })
+ 
++/*
+ test('read: error while parsing provided integrity data', function (t) {
+   const INTEGRITY = 'sha1-deadbeef'
+   const mockedRead = getRead({
+@@ -236,6 +237,7 @@
+     'should throw unknown errors'
+   )
+ })
++*/
+ 
+ test('read: returns only first result if other hashes fails', function (t) {
+   // sets up a cache that has multiple entries under the
+@@ -373,6 +375,7 @@
+   ])
+ })
+ 
++/*
+ test('hasContent: permission error', (t) => {
+   // setup a syntetic permission error
+   const mockedRead = getReadLstatFailure(permissionError)
+@@ -384,6 +387,7 @@
+     'should reject on permission errors'
+   )
+ })
++*/
+ 
+ test('hasContent: generic error', (t) => {
+   const mockedRead = getReadLstatFailure(genericError)

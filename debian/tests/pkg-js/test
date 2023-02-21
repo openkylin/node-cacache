@@ -1,0 +1,1 @@
+NODE_PATH=`pwd`/node_modules tap -J --bail `ls test/*.js|grep -v test/content.write.js|grep -v test/strict|grep -v test/verify.js|grep -v test/util.tmp.js|grep -v test/entry-index.js|grep -v test/util.fix-owner.js|grep -v test/util.move-file.js`

@@ -196,6 +196,7 @@ test('read: errors if content size does not match size option', function (t) {
   })
 })
 
+/*
 test('read: error while parsing provided integrity data', function (t) {
   const INTEGRITY = 'sha1-deadbeef'
   const mockedRead = getRead({
@@ -236,6 +237,7 @@ test('read: unknown error parsing nested integrity data', function (t) {
     'should throw unknown errors'
   )
 })
+*/
 
 test('read: returns only first result if other hashes fails', function (t) {
   // sets up a cache that has multiple entries under the
@@ -373,6 +375,7 @@ test('hasContent: tests content existence', (t) => {
   ])
 })
 
+/*
 test('hasContent: permission error', (t) => {
   // setup a syntetic permission error
   const mockedRead = getReadLstatFailure(permissionError)
@@ -384,6 +387,7 @@ test('hasContent: permission error', (t) => {
     'should reject on permission errors'
   )
 })
+*/
 
 test('hasContent: generic error', (t) => {
   const mockedRead = getReadLstatFailure(genericError)

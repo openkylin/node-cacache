@@ -4,9 +4,6 @@ dversionmangle=auto,\
 filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-cacache-$1/ \
  https://github.com/npm/cacache/tags .*/archive/.*/v?([\d\.]+).tar.gz group
 
-opts="searchmode=plain,pgpmode=none,dversionmangle=auto,ctype=nodejs,component=figgy-pudding" \
- https://registry.npmjs.org/figgy-pudding https://registry.npmjs.org/figgy-pudding/-/figgy-pudding-(\d[\d\.]*)@ARCHIVE_EXT@ checksum
-
 opts=\
 ctype=nodejs,\
 component=fs-minipass,\
@@ -23,31 +20,21 @@ filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-infer-owner-$1/ \
 
 opts=\
 ctype=nodejs,\
-component=minipass,\
-dversionmangle=auto,\
-filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-minipass-$1/ \
- https://github.com/isaacs/minipass/tags .*/archive/.*/v?([\d\.]+).tar.gz checksum
-
-# It is not recommended use npmregistry. Please investigate more.
-# Take a look at https://wiki.debian.org/debian/watch/
-opts="searchmode=plain,ctype=nodejs,component=minipass-collect,pgpmode=none" \
- https://registry.npmjs.org/minipass-collect https://registry.npmjs.org/minipass-collect/-/minipass-collect-([\d\.]+)@ARCHIVE_EXT@ checksum
-
-opts=\
-ctype=nodejs,\
-component=minipass-flush,\
-dversionmangle=auto,\
-filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-minipass-flush-$1/ \
- https://github.com/isaacs/minipass-flush/tags .*/archive/.*/v?([\d\.]+).tar.gz checksum
-
-# It is not recommended use npmregistry. Please investigate more.
-# Take a look at https://wiki.debian.org/debian/watch/
-opts="searchmode=plain,ctype=nodejs,component=minipass-pipeline,pgpmode=none" \
- https://registry.npmjs.org/minipass-pipeline https://registry.npmjs.org/minipass-pipeline/-/minipass-pipeline-([\d\.]+)@ARCHIVE_EXT@ checksum
-
-opts=\
-ctype=nodejs,\
 component=npmcli-move-file,\
 dversionmangle=auto,\
-filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-move-file-$1/ \
+filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-npmcli-move-file-$1/ \
  https://github.com/npm/move-file/tags .*/archive/.*/v?([\d\.]+).tar.gz checksum
+
+opts=\
+component=npmcli-fs,\
+ctype=nodejs,\
+dversionmangle=auto,\
+filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-npmcli-fs-$1/ \
+ https://github.com/npm/fs/tags .*/archive.*/v?([\d\.]+).tar.gz checksum
+
+opts=\
+component=gar-promisify,\
+ctype=nodejs,\
+dversionmangle=auto,\
+filenamemangle=s/.*?(\d[\d\.-]*@ARCHIVE_EXT@)/node-gar-promisify-$1/ \
+ https://github.com/wraithgar/gar-promisify/tags .*/archive.*/v?([\d\.]+).tar.gz checksum

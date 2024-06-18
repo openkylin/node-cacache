@@ -3,31 +3,34 @@ Upstream-Name: cacache
 Upstream-Contact: https://github.com/npm/cacache/issues
 Source: https://github.com/npm/cacache#readme
  https://github.com/npm/move-file/tags
+ https://github.com/npm/fs/tags
+ https://github.com/wraithgar/gar-promisify/tags
 
 Files: *
 Copyright: npm, Inc. and Contributors
 License: ISC
 
-Files: figgy-pudding/*
-Copyright: npm, Inc.
+Files: debian/*
+Copyright: 2017 Pirate Praveen <praveen@debian.org>
+ 2019-2022 Yadd <yadd@debian.org>
 License: ISC
 
 Files: fs-minipass/*
- minipass-collect/*
- minipass-flush/*
- minipass-pipeline/*
 Copyright: Isaac Z. Schlueter and Contributors
 License: ISC
+
+Files: gar-promisify/*
+Copyright: 2020-2022 Michael Garvin
+License: Expat
+
+Files: npmcli-fs/lib/cp/*
+Copyright: 2011-2017 JP Richardson
+License: Expat
 
 Files: npmcli-move-file/*
 Copyright: Sindre Sorhus <sindresorhus@gmail.com>
  npm, Inc.
 License: Expat
-
-Files: debian/*
-Copyright: 2017 Pirate Praveen <praveen@debian.org>
- 2019-2020 Yadd <yadd@debian.org>
-License: ISC
 
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining a

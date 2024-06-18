@@ -3,27 +3,28 @@ Maintainer: OpenKylin Developers <packaging@lists.openkylin.top>
 Section: javascript
 Testsuite: autopkgtest-pkg-nodejs
 Priority: optional
-Build-Depends: debhelper-compat (= 13),
-               node-bluebird <!nocheck>,
-               node-chownr <!nocheck>,
-               node-flush-write-stream (>= 1.0.3),
-               node-glob (>= 7.1.2) <!nocheck>,
-               node-graceful-fs <!nocheck>,
-               node-lru-cache (>= 4.1.1) <!nocheck>,
-               node-mississippi <!nocheck>,
-               node-mkdirp (>= 1.0.3) <!nocheck>,
-               node-move-concurrently <!nocheck>,
-               node-p-map (>= 3.0.0) <!nocheck>,
-               node-promise-inflight <!nocheck>,
-               node-require-inject (>= 1.4.4) <!nocheck>,
-               node-rimraf (>= 2.6.1) <!nocheck>,
-               node-ssri <!nocheck>,
-               node-tacks <!nocheck>,
-               node-tap <!nocheck>,
-               node-unique-filename <!nocheck>,
-               node-y18n <!nocheck>,
-               dh-sequence-nodejs
-Standards-Version: 4.6.0
+Build-Depends: debhelper-compat (= 13)
+ , dh-sequence-nodejs
+ , node-bluebird <!nocheck>
+ , node-chownr <!nocheck>
+ , node-flush-write-stream (>= 1.0.3)
+ , node-glob <!nocheck>
+ , node-graceful-fs <!nocheck>
+ , node-lru-cache (>= 7) <!nocheck>
+ , node-minipass <!nocheck>
+ , node-mississippi <!nocheck>
+ , node-mkdirp (>= 1.0.3) <!nocheck>
+ , node-move-concurrently <!nocheck>
+ , node-p-map (>= 3.0.0) <!nocheck>
+ , node-promise-inflight <!nocheck>
+ , node-rimraf <!nocheck>
+ , node-semver <!nocheck>
+ , node-ssri (>= 9) <!nocheck>
+ , node-tacks <!nocheck>
+ , node-tap (>= 15) <!nocheck>
+ , node-unique-filename <!nocheck>
+ , node-y18n <!nocheck>
+Standards-Version: 4.6.1
 Vcs-Browser: https://gitee.com/openkylin/node-cacache
 Vcs-Git: https://gitee.com/openkylin/node-cacache.git
 Homepage: https://github.com/npm/cacache#readme
@@ -31,19 +32,21 @@ Rules-Requires-Root: no
 
 Package: node-cacache
 Architecture: all
-Depends: ${misc:Depends},
-         nodejs,
-         node-chownr,
-         node-glob (>= 7.1.2),
-         node-graceful-fs,
-         node-lru-cache (>= 4.1.1),
-         node-mkdirp (>= 1.0.3),
-         node-move-concurrently,
-         node-p-map (>= 3.0.0),
-         node-promise-inflight,
-         node-rimraf (>= 2.6.1),
-         node-ssri,
-         node-unique-filename
+Depends: ${misc:Depends}
+ , node-chownr
+ , node-glob
+ , node-graceful-fs
+ , node-lru-cache (>= 7)
+ , node-minipass
+ , node-mkdirp (>= 1.0.3)
+ , node-move-concurrently
+ , node-p-map (>= 3.0.0)
+ , node-promise-inflight
+ , node-rimraf
+ , node-semver
+ , node-ssri (>= 9)
+ , node-unique-filename
+Breaks: npm (<< 8.6~)
 Provides: ${nodejs:Provides}
 Description: fast, fault-tolerant, disk-based, data-agnostic, content-addressable cache
  This module is a Node.js library for managing local key and content address

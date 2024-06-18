@@ -1,0 +1,4861 @@
+From: kreiserlee <liyang01@kylinos.cn>
+Date: Tue, 18 Jun 2024 14:34:12 +0800
+Subject: apply patches
+
+---
+ gar-promisify/.github/dependabot.yml               |  14 -
+ gar-promisify/.github/workflows/ci.yml             |  36 --
+ gar-promisify/.gitignore                           |   2 -
+ gar-promisify/LICENSE.md                           |  10 -
+ gar-promisify/README.md                            |  65 ----
+ gar-promisify/index.js                             |  36 --
+ gar-promisify/package.json                         |  32 --
+ gar-promisify/test/index.js                        |  83 ----
+ npmcli-fs/.commitlintrc.js                         |  10 -
+ npmcli-fs/.eslintrc.js                             |  17 -
+ npmcli-fs/.github/CODEOWNERS                       |   3 -
+ npmcli-fs/.github/ISSUE_TEMPLATE/bug.yml           |  54 ---
+ npmcli-fs/.github/ISSUE_TEMPLATE/config.yml        |   3 -
+ npmcli-fs/.github/dependabot.yml                   |  17 -
+ npmcli-fs/.github/matchers/tap.json                |  32 --
+ npmcli-fs/.github/settings.yml                     |   2 -
+ npmcli-fs/.github/workflows/audit.yml              |  39 --
+ npmcli-fs/.github/workflows/ci-release.yml         | 216 -----------
+ npmcli-fs/.github/workflows/ci.yml                 | 107 ------
+ npmcli-fs/.github/workflows/codeql-analysis.yml    |  38 --
+ npmcli-fs/.github/workflows/post-dependabot.yml    | 121 ------
+ npmcli-fs/.github/workflows/pull-request.yml       |  48 ---
+ npmcli-fs/.github/workflows/release.yml            | 299 --------------
+ npmcli-fs/.gitignore                               |  28 --
+ npmcli-fs/.npmrc                                   |   3 -
+ npmcli-fs/.release-please-manifest.json            |   3 -
+ npmcli-fs/CHANGELOG.md                             |  66 ----
+ npmcli-fs/CODE_OF_CONDUCT.md                       |   7 -
+ npmcli-fs/LICENSE.md                               |  20 -
+ npmcli-fs/README.md                                |  97 -----
+ npmcli-fs/SECURITY.md                              |   3 -
+ npmcli-fs/lib/common/get-options.js                |  20 -
+ npmcli-fs/lib/common/node.js                       |   9 -
+ npmcli-fs/lib/cp/LICENSE                           |  15 -
+ npmcli-fs/lib/cp/errors.js                         | 129 -------
+ npmcli-fs/lib/cp/index.js                          |  22 --
+ npmcli-fs/lib/cp/polyfill.js                       | 428 ---------------------
+ npmcli-fs/lib/index.js                             |  13 -
+ npmcli-fs/lib/move-file.js                         |  78 ----
+ npmcli-fs/lib/readdir-scoped.js                    |  20 -
+ npmcli-fs/lib/with-temp-dir.js                     |  39 --
+ npmcli-fs/package.json                             |  52 ---
+ npmcli-fs/release-please-config.json               |  36 --
+ npmcli-fs/test/common/get-options.js               |  25 --
+ npmcli-fs/test/common/node.js                      |  17 -
+ npmcli-fs/test/cp/errors.js                        |  81 ----
+ npmcli-fs/test/cp/index.js                         |  31 --
+ npmcli-fs/test/cp/polyfill.js                      | 380 ------------------
+ npmcli-fs/test/move-file.js                        | 270 -------------
+ npmcli-fs/test/readdir-scoped.js                   |  16 -
+ npmcli-fs/test/with-temp-dir.js                    |  59 ---
+ npmcli-move-file/.commitlintrc.js                  |  10 -
+ npmcli-move-file/.eslintrc.js                      |  17 -
+ npmcli-move-file/.github/CODEOWNERS                |   3 -
+ npmcli-move-file/.github/ISSUE_TEMPLATE/bug.yml    |  54 ---
+ npmcli-move-file/.github/ISSUE_TEMPLATE/config.yml |   3 -
+ npmcli-move-file/.github/dependabot.yml            |  17 -
+ npmcli-move-file/.github/matchers/tap.json         |  32 --
+ npmcli-move-file/.github/workflows/audit.yml       |  37 --
+ npmcli-move-file/.github/workflows/ci-release.yml  | 154 --------
+ .../.github/workflows/codeql-analysis.yml          |  38 --
+ .../.github/workflows/post-dependabot.yml          | 121 ------
+ .../.github/workflows/pull-request.yml             |  48 ---
+ npmcli-move-file/.github/workflows/release.yml     | 235 -----------
+ npmcli-move-file/.npmrc                            |   3 -
+ npmcli-move-file/.release-please-manifest.json     |   3 -
+ npmcli-move-file/CHANGELOG.md                      |  29 --
+ npmcli-move-file/CODE_OF_CONDUCT.md                |   7 -
+ npmcli-move-file/SECURITY.md                       |   3 -
+ npmcli-move-file/lib/index.js                      | 185 ---------
+ npmcli-move-file/release-please-config.json        |  36 --
+ 71 files changed, 4286 deletions(-)
+ delete mode 100644 gar-promisify/.github/dependabot.yml
+ delete mode 100644 gar-promisify/.github/workflows/ci.yml
+ delete mode 100644 gar-promisify/.gitignore
+ delete mode 100644 gar-promisify/LICENSE.md
+ delete mode 100644 gar-promisify/README.md
+ delete mode 100644 gar-promisify/index.js
+ delete mode 100644 gar-promisify/package.json
+ delete mode 100644 gar-promisify/test/index.js
+ delete mode 100644 npmcli-fs/.commitlintrc.js
+ delete mode 100644 npmcli-fs/.eslintrc.js
+ delete mode 100644 npmcli-fs/.github/CODEOWNERS
+ delete mode 100644 npmcli-fs/.github/ISSUE_TEMPLATE/bug.yml
+ delete mode 100644 npmcli-fs/.github/ISSUE_TEMPLATE/config.yml
+ delete mode 100644 npmcli-fs/.github/dependabot.yml
+ delete mode 100644 npmcli-fs/.github/matchers/tap.json
+ delete mode 100644 npmcli-fs/.github/settings.yml
+ delete mode 100644 npmcli-fs/.github/workflows/audit.yml
+ delete mode 100644 npmcli-fs/.github/workflows/ci-release.yml
+ delete mode 100644 npmcli-fs/.github/workflows/ci.yml
+ delete mode 100644 npmcli-fs/.github/workflows/codeql-analysis.yml
+ delete mode 100644 npmcli-fs/.github/workflows/post-dependabot.yml
+ delete mode 100644 npmcli-fs/.github/workflows/pull-request.yml
+ delete mode 100644 npmcli-fs/.github/workflows/release.yml
+ delete mode 100644 npmcli-fs/.gitignore
+ delete mode 100644 npmcli-fs/.npmrc
+ delete mode 100644 npmcli-fs/.release-please-manifest.json
+ delete mode 100644 npmcli-fs/CHANGELOG.md
+ delete mode 100644 npmcli-fs/CODE_OF_CONDUCT.md
+ delete mode 100644 npmcli-fs/LICENSE.md
+ delete mode 100644 npmcli-fs/README.md
+ delete mode 100644 npmcli-fs/SECURITY.md
+ delete mode 100644 npmcli-fs/lib/common/get-options.js
+ delete mode 100644 npmcli-fs/lib/common/node.js
+ delete mode 100644 npmcli-fs/lib/cp/LICENSE
+ delete mode 100644 npmcli-fs/lib/cp/errors.js
+ delete mode 100644 npmcli-fs/lib/cp/index.js
+ delete mode 100644 npmcli-fs/lib/cp/polyfill.js
+ delete mode 100644 npmcli-fs/lib/index.js
+ delete mode 100644 npmcli-fs/lib/move-file.js
+ delete mode 100644 npmcli-fs/lib/readdir-scoped.js
+ delete mode 100644 npmcli-fs/lib/with-temp-dir.js
+ delete mode 100644 npmcli-fs/package.json
+ delete mode 100644 npmcli-fs/release-please-config.json
+ delete mode 100644 npmcli-fs/test/common/get-options.js
+ delete mode 100644 npmcli-fs/test/common/node.js
+ delete mode 100644 npmcli-fs/test/cp/errors.js
+ delete mode 100644 npmcli-fs/test/cp/index.js
+ delete mode 100644 npmcli-fs/test/cp/polyfill.js
+ delete mode 100644 npmcli-fs/test/move-file.js
+ delete mode 100644 npmcli-fs/test/readdir-scoped.js
+ delete mode 100644 npmcli-fs/test/with-temp-dir.js
+ delete mode 100644 npmcli-move-file/.commitlintrc.js
+ delete mode 100644 npmcli-move-file/.eslintrc.js
+ delete mode 100644 npmcli-move-file/.github/CODEOWNERS
+ delete mode 100644 npmcli-move-file/.github/ISSUE_TEMPLATE/bug.yml
+ delete mode 100644 npmcli-move-file/.github/ISSUE_TEMPLATE/config.yml
+ delete mode 100644 npmcli-move-file/.github/dependabot.yml
+ delete mode 100644 npmcli-move-file/.github/matchers/tap.json
+ delete mode 100644 npmcli-move-file/.github/workflows/audit.yml
+ delete mode 100644 npmcli-move-file/.github/workflows/ci-release.yml
+ delete mode 100644 npmcli-move-file/.github/workflows/codeql-analysis.yml
+ delete mode 100644 npmcli-move-file/.github/workflows/post-dependabot.yml
+ delete mode 100644 npmcli-move-file/.github/workflows/pull-request.yml
+ delete mode 100644 npmcli-move-file/.github/workflows/release.yml
+ delete mode 100644 npmcli-move-file/.npmrc
+ delete mode 100644 npmcli-move-file/.release-please-manifest.json
+ delete mode 100644 npmcli-move-file/CHANGELOG.md
+ delete mode 100644 npmcli-move-file/CODE_OF_CONDUCT.md
+ delete mode 100644 npmcli-move-file/SECURITY.md
+ delete mode 100644 npmcli-move-file/lib/index.js
+ delete mode 100644 npmcli-move-file/release-please-config.json
+
+diff --git a/gar-promisify/.github/dependabot.yml b/gar-promisify/.github/dependabot.yml
+deleted file mode 100644
+index baeddb1..0000000
+--- a/gar-promisify/.github/dependabot.yml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-version: 2
+-updates:
+-- package-ecosystem: npm
+-  directory: "/"
+-  schedule:
+-    interval: daily
+-  allow:
+-    - dependency-type: direct
+-  versioning-strategy: increase-if-necessary
+-  commit-message:
+-    prefix: deps
+-    prefix-development: chore
+-  labels:
+-    - "dependencies"
+diff --git a/gar-promisify/.github/workflows/ci.yml b/gar-promisify/.github/workflows/ci.yml
+deleted file mode 100644
+index 3a59429..0000000
+--- a/gar-promisify/.github/workflows/ci.yml
++++ /dev/null
+@@ -1,36 +0,0 @@
+-name: CI
+-
+-on:
+-  schedule:
+-    # every sunday at noon
+-    - cron: 0 12 * * 0
+-  push:
+-    branches: [ main ]
+-  pull_request:
+-    branches: [ main ]
+-
+-jobs:
+-  lint:
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@v2
+-      - uses: actions/setup-node@v2
+-        with:
+-          node-version: '16'
+-      - run: npm i --prefer-online -g npm@latest
+-      - run: npm i --prefer-online
+-      - run: npm run lint
+-
+-  test:
+-    runs-on: ubuntu-latest
+-    strategy:
+-      matrix:
+-        node-version: [12.x, 14.x, 16.x]
+-    steps:
+-    - uses: actions/checkout@v2
+-    - uses: actions/setup-node@v2
+-      with:
+-        node-version: ${{ matrix.node-version }}
+-    - run: npm i --prefer-online -g npm@latest
+-    - run: npm i --prefer-online
+-    - run: npm test
+diff --git a/gar-promisify/.gitignore b/gar-promisify/.gitignore
+deleted file mode 100644
+index d5f19d8..0000000
+--- a/gar-promisify/.gitignore
++++ /dev/null
+@@ -1,2 +0,0 @@
+-node_modules
+-package-lock.json
+diff --git a/gar-promisify/LICENSE.md b/gar-promisify/LICENSE.md
+deleted file mode 100644
+index 64f7732..0000000
+--- a/gar-promisify/LICENSE.md
++++ /dev/null
+@@ -1,10 +0,0 @@
+-The MIT License (MIT)
+-
+-Copyright © 2020-2022 Michael Garvin
+-
+-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+-
+-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-
+-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-
+diff --git a/gar-promisify/README.md b/gar-promisify/README.md
+deleted file mode 100644
+index 465c546..0000000
+--- a/gar-promisify/README.md
++++ /dev/null
+@@ -1,65 +0,0 @@
+-# @gar/promisify
+-
+-### Promisify an entire object or class instance
+-
+-This module leverages es6 Proxy and Reflect to promisify every function in an
+-object or class instance.
+-
+-It assumes the callback that the function is expecting is the last
+-parameter, and that it is an error-first callback with only one value,
+-i.e. `(err, value) => ...`. This mirrors node's `util.promisify` method.
+-
+-In order that you can use it as a one-stop-shop for all your promisify
+-needs, you can also pass it a function.  That function will be
+-promisified as normal using node's built-in `util.promisify` method.
+-
+-[node's custom promisified
+-functions](https://nodejs.org/api/util.html#util_custom_promisified_functions)
+-will also be mirrored, further allowing this to be a drop-in replacement
+-for the built-in `util.promisify`.
+-
+-### Examples
+-
+-Promisify an entire object
+-
+-```javascript
+-
+-const promisify = require('@gar/promisify')
+-
+-class Foo {
+-  constructor (attr) {
+-    this.attr = attr
+-  }
+-
+-  double (input, cb) {
+-    cb(null, input * 2)
+-  }
+-
+-const foo = new Foo('baz')
+-const promisified = promisify(foo)
+-
+-console.log(promisified.attr)
+-console.log(await promisified.double(1024))
+-```
+-
+-Promisify a function
+-
+-```javascript
+-
+-const promisify = require('@gar/promisify')
+-
+-function foo (a, cb) {
+-  if (a !== 'bad') {
+-    return cb(null, 'ok')
+-  }
+-  return cb('not ok')
+-}
+-
+-const promisified = promisify(foo)
+-
+-// This will resolve to 'ok'
+-promisified('good')
+-
+-// this will reject
+-promisified('bad')
+-```
+diff --git a/gar-promisify/index.js b/gar-promisify/index.js
+deleted file mode 100644
+index d0be95f..0000000
+--- a/gar-promisify/index.js
++++ /dev/null
+@@ -1,36 +0,0 @@
+-'use strict'
+-
+-const { promisify } = require('util')
+-
+-const handler = {
+-  get: function (target, prop, receiver) {
+-    if (typeof target[prop] !== 'function') {
+-      return target[prop]
+-    }
+-    if (target[prop][promisify.custom]) {
+-      return function () {
+-        return Reflect.get(target, prop, receiver)[promisify.custom].apply(target, arguments)
+-      }
+-    }
+-    return function () {
+-      return new Promise((resolve, reject) => {
+-        Reflect.get(target, prop, receiver).apply(target, [...arguments, function (err, result) {
+-          if (err) {
+-            return reject(err)
+-          }
+-          resolve(result)
+-        }])
+-      })
+-    }
+-  }
+-}
+-
+-module.exports = function (thingToPromisify) {
+-  if (typeof thingToPromisify === 'function') {
+-    return promisify(thingToPromisify)
+-  }
+-  if (typeof thingToPromisify === 'object') {
+-    return new Proxy(thingToPromisify, handler)
+-  }
+-  throw new TypeError('Can only promisify functions or objects')
+-}
+diff --git a/gar-promisify/package.json b/gar-promisify/package.json
+deleted file mode 100644
+index d0ce69b..0000000
+--- a/gar-promisify/package.json
++++ /dev/null
+@@ -1,32 +0,0 @@
+-{
+-  "name": "@gar/promisify",
+-  "version": "1.1.3",
+-  "description": "Promisify an entire class or object",
+-  "main": "index.js",
+-  "repository": {
+-    "type": "git",
+-    "url": "https://github.com/wraithgar/gar-promisify.git"
+-  },
+-  "scripts": {
+-    "lint": "standard",
+-    "lint:fix": "standard --fix",
+-    "test": "lab -a @hapi/code -t 100",
+-    "posttest": "npm run lint"
+-  },
+-  "files": [
+-    "index.js"
+-  ],
+-  "keywords": [
+-    "promisify",
+-    "all",
+-    "class",
+-    "object"
+-  ],
+-  "author": "Gar <gar+npm@danger.computer>",
+-  "license": "MIT",
+-  "devDependencies": {
+-    "@hapi/code": "^8.0.1",
+-    "@hapi/lab": "^24.1.0",
+-    "standard": "^16.0.3"
+-  }
+-}
+diff --git a/gar-promisify/test/index.js b/gar-promisify/test/index.js
+deleted file mode 100644
+index be966cc..0000000
+--- a/gar-promisify/test/index.js
++++ /dev/null
+@@ -1,83 +0,0 @@
+-'use strict'
+-
+-const lab = (exports.lab = require('@hapi/lab').script())
+-const { describe, it } = lab
+-const { expect } = require('@hapi/code')
+-const util = require('util')
+-
+-const promisify = require('../')
+-
+-class Fixture {
+-  constructor (attr) {
+-    this.attr = attr
+-    this.custom[util.promisify.custom] = function (input1, input2) {
+-      return Promise.resolve([this.attr, input1, input2])
+-    }
+-  }
+-
+-  single (input, cb) {
+-    cb(null, [this.attr, input])
+-  }
+-
+-  custom (input1, input2, cb) {
+-    cb(null, this.attr, input1, input2)
+-  }
+-
+-  error (input, cb) {
+-    cb(new Error(input))
+-  }
+-}
+-
+-it('requires a function or object', () => {
+-  const throws = () => {
+-    promisify('string')
+-  }
+-  expect(throws).to.throw(TypeError)
+-})
+-
+-describe('promisify object', () => {
+-  it('non function attribute', () => {
+-    const instance = new Fixture('test')
+-    const promisified = promisify(instance)
+-    expect(promisified.attr).to.equal('test')
+-  })
+-
+-  it('custom promisify', async () => {
+-    const instance = new Fixture('test')
+-    const promisified = promisify(instance)
+-    const custom = await promisified.custom('test one', 'test two')
+-    expect(custom).to.equal(['test', 'test one', 'test two'])
+-  })
+-
+-  it('callback success', async () => {
+-    const instance = new Fixture('test')
+-    const promisified = promisify(instance)
+-    const single = await promisified.single('test single')
+-    expect(single).to.equal(['test', 'test single'])
+-  })
+-
+-  it('callback success', async () => {
+-    const instance = new Fixture('test')
+-    const promisified = promisify(instance)
+-    const rejects = function () {
+-      return promisified.error('test error')
+-    }
+-    expect(rejects()).to.reject(Error, 'test error')
+-  })
+-})
+-
+-describe('promisify function', () => {
+-  it('promisifies a function', async () => {
+-    const fn = (a, cb) => cb(null, a)
+-    const promisified = promisify(fn)
+-    const result = await promisified('test')
+-    expect(result).to.equal('test')
+-  })
+-
+-  it('assumes error first callback', async () => {
+-    const fn = (a, cb) => cb(new Error('test error'), a)
+-    const promisified = promisify(fn)
+-    const result = promisified('test')
+-    expect(result).to.reject('test error')
+-  })
+-})
+diff --git a/npmcli-fs/.commitlintrc.js b/npmcli-fs/.commitlintrc.js
+deleted file mode 100644
+index 5b0b1a5..0000000
+--- a/npmcli-fs/.commitlintrc.js
++++ /dev/null
+@@ -1,10 +0,0 @@
+-/* This file is automatically added by @npmcli/template-oss. Do not edit. */
+-
+-module.exports = {
+-  extends: ['@commitlint/config-conventional'],
+-  rules: {
+-    'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'deps', 'chore']],
+-    'header-max-length': [2, 'always', 80],
+-    'subject-case': [0, 'always', ['lower-case', 'sentence-case', 'start-case']],
+-  },
+-}
+diff --git a/npmcli-fs/.eslintrc.js b/npmcli-fs/.eslintrc.js
+deleted file mode 100644
+index 5db9f81..0000000
+--- a/npmcli-fs/.eslintrc.js
++++ /dev/null
+@@ -1,17 +0,0 @@
+-/* This file is automatically added by @npmcli/template-oss. Do not edit. */
+-
+-'use strict'
+-
+-const { readdirSync: readdir } = require('fs')
+-
+-const localConfigs = readdir(__dirname)
+-  .filter((file) => file.startsWith('.eslintrc.local.'))
+-  .map((file) => `./${file}`)
+-
+-module.exports = {
+-  root: true,
+-  extends: [
+-    '@npmcli',
+-    ...localConfigs,
+-  ],
+-}
+diff --git a/npmcli-fs/.github/CODEOWNERS b/npmcli-fs/.github/CODEOWNERS
+deleted file mode 100644
+index 2c54b0d..0000000
+--- a/npmcli-fs/.github/CODEOWNERS
++++ /dev/null
+@@ -1,3 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-* @npm/cli-team
+diff --git a/npmcli-fs/.github/ISSUE_TEMPLATE/bug.yml b/npmcli-fs/.github/ISSUE_TEMPLATE/bug.yml
+deleted file mode 100644
+index d043192..0000000
+--- a/npmcli-fs/.github/ISSUE_TEMPLATE/bug.yml
++++ /dev/null
+@@ -1,54 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Bug
+-description: File a bug/issue
+-title: "[BUG] <title>"
+-labels: [ Bug, Needs Triage ]
+-
+-body:
+-  - type: checkboxes
+-    attributes:
+-      label: Is there an existing issue for this?
+-      description: Please [search here](./issues) to see if an issue already exists for your problem.
+-      options:
+-        - label: I have searched the existing issues
+-          required: true
+-  - type: textarea
+-    attributes:
+-      label: Current Behavior
+-      description: A clear & concise description of what you're experiencing.
+-    validations:
+-      required: false
+-  - type: textarea
+-    attributes:
+-      label: Expected Behavior
+-      description: A clear & concise description of what you expected to happen.
+-    validations:
+-      required: false
+-  - type: textarea
+-    attributes:
+-      label: Steps To Reproduce
+-      description: Steps to reproduce the behavior.
+-      value: |
+-        1. In this environment...
+-        2. With this config...
+-        3. Run '...'
+-        4. See error...
+-    validations:
+-      required: false
+-  - type: textarea
+-    attributes:
+-      label: Environment
+-      description: |
+-        examples:
+-          - **npm**: 7.6.3
+-          - **Node**: 13.14.0
+-          - **OS**: Ubuntu 20.04
+-          - **platform**: Macbook Pro
+-      value: |
+-        - npm:
+-        - Node:
+-        - OS:
+-        - platform:
+-    validations:
+-      required: false
+diff --git a/npmcli-fs/.github/ISSUE_TEMPLATE/config.yml b/npmcli-fs/.github/ISSUE_TEMPLATE/config.yml
+deleted file mode 100644
+index d640909..0000000
+--- a/npmcli-fs/.github/ISSUE_TEMPLATE/config.yml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-blank_issues_enabled: true
+diff --git a/npmcli-fs/.github/dependabot.yml b/npmcli-fs/.github/dependabot.yml
+deleted file mode 100644
+index 8da2a45..0000000
+--- a/npmcli-fs/.github/dependabot.yml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-version: 2
+-
+-updates:
+-  - package-ecosystem: npm
+-    directory: /
+-    schedule:
+-      interval: daily
+-    allow:
+-      - dependency-type: direct
+-    versioning-strategy: increase-if-necessary
+-    commit-message:
+-      prefix: deps
+-      prefix-development: chore
+-    labels:
+-      - "Dependencies"
+diff --git a/npmcli-fs/.github/matchers/tap.json b/npmcli-fs/.github/matchers/tap.json
+deleted file mode 100644
+index 2c81ea9..0000000
+--- a/npmcli-fs/.github/matchers/tap.json
++++ /dev/null
+@@ -1,32 +0,0 @@
+-{
+-  "//@npmcli/template-oss": "This file is automatically added by @npmcli/template-oss. Do not edit.",
+-  "problemMatcher": [
+-    {
+-      "owner": "tap",
+-      "pattern": [
+-        {
+-          "regexp": "^\\s*not ok \\d+ - (.*)",
+-          "message": 1
+-        },
+-        {
+-          "regexp": "^\\s*---"
+-        },
+-        {
+-          "regexp": "^\\s*at:"
+-        },
+-        {
+-          "regexp": "^\\s*line:\\s*(\\d+)",
+-          "line": 1
+-        },
+-        {
+-          "regexp": "^\\s*column:\\s*(\\d+)",
+-          "column": 1
+-        },
+-        {
+-          "regexp": "^\\s*file:\\s*(.*)",
+-          "file": 1
+-        }
+-      ]
+-    }
+-  ]
+-}
+diff --git a/npmcli-fs/.github/settings.yml b/npmcli-fs/.github/settings.yml
+deleted file mode 100644
+index 1019e26..0000000
+--- a/npmcli-fs/.github/settings.yml
++++ /dev/null
+@@ -1,2 +0,0 @@
+----
+-_extends: '.github:npm-cli/settings.yml'
+diff --git a/npmcli-fs/.github/workflows/audit.yml b/npmcli-fs/.github/workflows/audit.yml
+deleted file mode 100644
+index 62892f9..0000000
+--- a/npmcli-fs/.github/workflows/audit.yml
++++ /dev/null
+@@ -1,39 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Audit
+-
+-on:
+-  workflow_dispatch:
+-  schedule:
+-    # "At 08:00 UTC (01:00 PT) on Monday" https://crontab.guru/#0_8_*_*_1
+-    - cron: "0 8 * * 1"
+-
+-jobs:
+-  audit:
+-    name: Audit Dependencies
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund --package-lock
+-      - name: Run Production Audit
+-        run: npm audit --omit=dev
+-      - name: Run Full Audit
+-        run: npm audit --audit-level=none
+diff --git a/npmcli-fs/.github/workflows/ci-release.yml b/npmcli-fs/.github/workflows/ci-release.yml
+deleted file mode 100644
+index 6e80aa6..0000000
+--- a/npmcli-fs/.github/workflows/ci-release.yml
++++ /dev/null
+@@ -1,216 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: CI - Release
+-
+-on:
+-  workflow_dispatch:
+-    inputs:
+-      ref:
+-        required: true
+-        type: string
+-        default: main
+-  workflow_call:
+-    inputs:
+-      ref:
+-        required: true
+-        type: string
+-      check-sha:
+-        required: true
+-        type: string
+-
+-jobs:
+-  lint-all:
+-    name: Lint All
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Get Workflow Job
+-        uses: actions/github-script@v6
+-        if: inputs.check-sha
+-        id: check-output
+-        env:
+-          JOB_NAME: "Lint All"
+-          MATRIX_NAME: ""
+-        with:
+-          script: |
+-            const { owner, repo } = context.repo
+-
+-            const { data } = await github.rest.actions.listJobsForWorkflowRun({
+-              owner,
+-              repo,
+-              run_id: context.runId,
+-              per_page: 100
+-            })
+-
+-            const jobName = process.env.JOB_NAME + process.env.MATRIX_NAME
+-            const job = data.jobs.find(j => j.name.endsWith(jobName))
+-            const jobUrl = job?.html_url
+-
+-            const shaUrl = `${context.serverUrl}/${owner}/${repo}/commit/${{ inputs.check-sha }}`
+-
+-            let summary = `This check is assosciated with ${shaUrl}\n\n`
+-
+-            if (jobUrl) {
+-              summary += `For run logs, click here: ${jobUrl}`
+-            } else {
+-              summary += `Run logs could not be found for a job with name: "${jobName}"`
+-            }
+-
+-            return { summary }
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-        if: inputs.check-sha
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Lint All
+-          sha: ${{ inputs.check-sha }}
+-          output: ${{ steps.check-output.outputs.result }}
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          ref: ${{ inputs.ref }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Lint
+-        run: npm run lint --ignore-scripts
+-      - name: Post Lint
+-        run: npm run postlint --ignore-scripts
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: steps.check.outputs.check_id && always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ job.status }}
+-          check_id: ${{ steps.check.outputs.check_id }}
+-
+-  test-all:
+-    name: Test All - ${{ matrix.platform.name }} - ${{ matrix.node-version }}
+-    if: github.repository_owner == 'npm'
+-    strategy:
+-      fail-fast: false
+-      matrix:
+-        platform:
+-          - name: Linux
+-            os: ubuntu-latest
+-            shell: bash
+-          - name: macOS
+-            os: macos-latest
+-            shell: bash
+-          - name: Windows
+-            os: windows-latest
+-            shell: cmd
+-        node-version:
+-          - 14.17.0
+-          - 14.x
+-          - 16.13.0
+-          - 16.x
+-          - 18.0.0
+-          - 18.x
+-    runs-on: ${{ matrix.platform.os }}
+-    defaults:
+-      run:
+-        shell: ${{ matrix.platform.shell }}
+-    steps:
+-      - name: Get Workflow Job
+-        uses: actions/github-script@v6
+-        if: inputs.check-sha
+-        id: check-output
+-        env:
+-          JOB_NAME: "Test All"
+-          MATRIX_NAME: " - ${{ matrix.platform.name }} - ${{ matrix.node-version }}"
+-        with:
+-          script: |
+-            const { owner, repo } = context.repo
+-
+-            const { data } = await github.rest.actions.listJobsForWorkflowRun({
+-              owner,
+-              repo,
+-              run_id: context.runId,
+-              per_page: 100
+-            })
+-
+-            const jobName = process.env.JOB_NAME + process.env.MATRIX_NAME
+-            const job = data.jobs.find(j => j.name.endsWith(jobName))
+-            const jobUrl = job?.html_url
+-
+-            const shaUrl = `${context.serverUrl}/${owner}/${repo}/commit/${{ inputs.check-sha }}`
+-
+-            let summary = `This check is assosciated with ${shaUrl}\n\n`
+-
+-            if (jobUrl) {
+-              summary += `For run logs, click here: ${jobUrl}`
+-            } else {
+-              summary += `Run logs could not be found for a job with name: "${jobName}"`
+-            }
+-
+-            return { summary }
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-        if: inputs.check-sha
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Test All - ${{ matrix.platform.name }} - ${{ matrix.node-version }}
+-          sha: ${{ inputs.check-sha }}
+-          output: ${{ steps.check-output.outputs.result }}
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          ref: ${{ inputs.ref }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: ${{ matrix.node-version }}
+-      - name: Update Windows npm
+-        # node 12 and 14 ship with npm@6, which is known to fail when updating itself in windows
+-        if: matrix.platform.os == 'windows-latest' && (startsWith(matrix.node-version, '12.') || startsWith(matrix.node-version, '14.'))
+-        run: |
+-          curl -sO https://registry.npmjs.org/npm/-/npm-7.5.4.tgz
+-          tar xf npm-7.5.4.tgz
+-          cd package
+-          node lib/npm.js install --no-fund --no-audit -g ..\npm-7.5.4.tgz
+-          cd ..
+-          rmdir /s /q package
+-      - name: Install npm@7
+-        if: startsWith(matrix.node-version, '10.')
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@7
+-      - name: Install npm@latest
+-        if: ${{ !startsWith(matrix.node-version, '10.') }}
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Add Problem Matcher
+-        run: echo "::add-matcher::.github/matchers/tap.json"
+-      - name: Test
+-        run: npm test --ignore-scripts
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: steps.check.outputs.check_id && always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ job.status }}
+-          check_id: ${{ steps.check.outputs.check_id }}
+diff --git a/npmcli-fs/.github/workflows/ci.yml b/npmcli-fs/.github/workflows/ci.yml
+deleted file mode 100644
+index 9cc149d..0000000
+--- a/npmcli-fs/.github/workflows/ci.yml
++++ /dev/null
+@@ -1,107 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: CI
+-
+-on:
+-  workflow_dispatch:
+-  pull_request:
+-  push:
+-    branches:
+-      - main
+-      - latest
+-  schedule:
+-    # "At 09:00 UTC (02:00 PT) on Monday" https://crontab.guru/#0_9_*_*_1
+-    - cron: "0 9 * * 1"
+-
+-jobs:
+-  lint:
+-    name: Lint
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Lint
+-        run: npm run lint --ignore-scripts
+-      - name: Post Lint
+-        run: npm run postlint --ignore-scripts
+-
+-  test:
+-    name: Test - ${{ matrix.platform.name }} - ${{ matrix.node-version }}
+-    if: github.repository_owner == 'npm'
+-    strategy:
+-      fail-fast: false
+-      matrix:
+-        platform:
+-          - name: Linux
+-            os: ubuntu-latest
+-            shell: bash
+-          - name: macOS
+-            os: macos-latest
+-            shell: bash
+-          - name: Windows
+-            os: windows-latest
+-            shell: cmd
+-        node-version:
+-          - 14.17.0
+-          - 14.x
+-          - 16.13.0
+-          - 16.x
+-          - 18.0.0
+-          - 18.x
+-    runs-on: ${{ matrix.platform.os }}
+-    defaults:
+-      run:
+-        shell: ${{ matrix.platform.shell }}
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: ${{ matrix.node-version }}
+-      - name: Update Windows npm
+-        # node 12 and 14 ship with npm@6, which is known to fail when updating itself in windows
+-        if: matrix.platform.os == 'windows-latest' && (startsWith(matrix.node-version, '12.') || startsWith(matrix.node-version, '14.'))
+-        run: |
+-          curl -sO https://registry.npmjs.org/npm/-/npm-7.5.4.tgz
+-          tar xf npm-7.5.4.tgz
+-          cd package
+-          node lib/npm.js install --no-fund --no-audit -g ..\npm-7.5.4.tgz
+-          cd ..
+-          rmdir /s /q package
+-      - name: Install npm@7
+-        if: startsWith(matrix.node-version, '10.')
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@7
+-      - name: Install npm@latest
+-        if: ${{ !startsWith(matrix.node-version, '10.') }}
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Add Problem Matcher
+-        run: echo "::add-matcher::.github/matchers/tap.json"
+-      - name: Test
+-        run: npm test --ignore-scripts
+diff --git a/npmcli-fs/.github/workflows/codeql-analysis.yml b/npmcli-fs/.github/workflows/codeql-analysis.yml
+deleted file mode 100644
+index 66b9498..0000000
+--- a/npmcli-fs/.github/workflows/codeql-analysis.yml
++++ /dev/null
+@@ -1,38 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: CodeQL
+-
+-on:
+-  push:
+-    branches:
+-      - main
+-      - latest
+-  pull_request:
+-    branches:
+-      - main
+-      - latest
+-  schedule:
+-    # "At 10:00 UTC (03:00 PT) on Monday" https://crontab.guru/#0_10_*_*_1
+-    - cron: "0 10 * * 1"
+-
+-jobs:
+-  analyze:
+-    name: Analyze
+-    runs-on: ubuntu-latest
+-    permissions:
+-      actions: read
+-      contents: read
+-      security-events: write
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Initialize CodeQL
+-        uses: github/codeql-action/init@v2
+-        with:
+-          languages: javascript
+-      - name: Perform CodeQL Analysis
+-        uses: github/codeql-action/analyze@v2
+diff --git a/npmcli-fs/.github/workflows/post-dependabot.yml b/npmcli-fs/.github/workflows/post-dependabot.yml
+deleted file mode 100644
+index 19902bd..0000000
+--- a/npmcli-fs/.github/workflows/post-dependabot.yml
++++ /dev/null
+@@ -1,121 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Post Dependabot
+-
+-on: pull_request
+-
+-permissions:
+-  contents: write
+-
+-jobs:
+-  template-oss:
+-    name: template-oss
+-    if: github.repository_owner == 'npm' && github.actor == 'dependabot[bot]'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          ref: ${{ github.event.pull_request.head.ref }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Fetch Dependabot Metadata
+-        id: metadata
+-        uses: dependabot/fetch-metadata@v1
+-        with:
+-          github-token: ${{ secrets.GITHUB_TOKEN }}
+-
+-      # Dependabot can update multiple directories so we output which directory
+-      # it is acting on so we can run the command for the correct root or workspace
+-      - name: Get Dependabot Directory
+-        if: contains(steps.metadata.outputs.dependency-names, '@npmcli/template-oss')
+-        id: flags
+-        run: |
+-          dependabot_dir="${{ steps.metadata.outputs.directory }}"
+-          if [[ "$dependabot_dir" == "/" ]]; then
+-            echo "::set-output name=workspace::-iwr"
+-          else
+-            # strip leading slash from directory so it works as a
+-            # a path to the workspace flag
+-            echo "::set-output name=workspace::-w ${dependabot_dir#/}"
+-          fi
+-
+-      - name: Apply Changes
+-        if: steps.flags.outputs.workspace
+-        id: apply
+-        run: |
+-          npm run template-oss-apply ${{ steps.flags.outputs.workspace }}
+-          if [[ `git status --porcelain` ]]; then
+-            echo "::set-output name=changes::true"
+-          fi
+-          # This only sets the conventional commit prefix. This workflow can't reliably determine
+-          # what the breaking change is though. If a BREAKING CHANGE message is required then
+-          # this PR check will fail and the commit will be amended with stafftools
+-          if [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-major" ]]; then
+-            prefix='feat!'
+-          else
+-            prefix='chore'
+-          fi
+-          echo "::set-output name=message::$prefix: postinstall for dependabot template-oss PR"
+-
+-      # This step will fail if template-oss has made any workflow updates. It is impossible
+-      # for a workflow to update other workflows. In the case it does fail, we continue
+-      # and then try to apply only a portion of the changes in the next step
+-      - name: Push All Changes
+-        if: steps.apply.outputs.changes
+-        id: push
+-        continue-on-error: true
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          git commit -am "${{ steps.apply.outputs.message }}"
+-          git push
+-
+-      # If the previous step failed, then reset the commit and remove any workflow changes
+-      # and attempt to commit and push again. This is helpful because we will have a commit
+-      # with the correct prefix that we can then --amend with @npmcli/stafftools later.
+-      - name: Push All Changes Except Workflows
+-        if: steps.apply.outputs.changes && steps.push.outcome == 'failure'
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          git reset HEAD~
+-          git checkout HEAD -- .github/workflows/
+-          git clean -fd .github/workflows/
+-          git commit -am "${{ steps.apply.outputs.message }}"
+-          git push
+-
+-      # Check if all the necessary template-oss changes were applied. Since we continued
+-      # on errors in one of the previous steps, this check will fail if our follow up
+-      # only applied a portion of the changes and we need to followup manually.
+-      #
+-      # Note that this used to run `lint` and `postlint` but that will fail this action
+-      # if we've also shipped any linting changes separate from template-oss. We do
+-      # linting in another action, so we want to fail this one only if there are
+-      # template-oss changes that could not be applied.
+-      - name: Check Changes
+-        if: steps.apply.outputs.changes
+-        run: |
+-          npm exec --offline ${{ steps.flags.outputs.workspace }} -- template-oss-check
+-
+-      - name: Fail on Breaking Change
+-        if: steps.apply.outputs.changes && startsWith(steps.apply.outputs.message, 'feat!')
+-        run: |
+-          echo "This PR has a breaking change. Run 'npx -p @npmcli/stafftools gh template-oss-fix'"
+-          echo "for more information on how to fix this with a BREAKING CHANGE footer."
+-          exit 1
+diff --git a/npmcli-fs/.github/workflows/pull-request.yml b/npmcli-fs/.github/workflows/pull-request.yml
+deleted file mode 100644
+index 1a1d1ee..0000000
+--- a/npmcli-fs/.github/workflows/pull-request.yml
++++ /dev/null
+@@ -1,48 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Pull Request
+-
+-on:
+-  pull_request:
+-    types:
+-      - opened
+-      - reopened
+-      - edited
+-      - synchronize
+-
+-jobs:
+-  commitlint:
+-    name: Lint Commits
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          fetch-depth: 0
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Run Commitlint on Commits
+-        id: commit
+-        continue-on-error: true
+-        run: |
+-          npx --offline commitlint -V --from origin/${{ github.base_ref }} --to ${{ github.event.pull_request.head.sha }}
+-      - name: Run Commitlint on PR Title
+-        if: steps.commit.outcome == 'failure'
+-        run: |
+-          echo ${{ github.event.pull_request.title }} | npx --offline commitlint -V
+diff --git a/npmcli-fs/.github/workflows/release.yml b/npmcli-fs/.github/workflows/release.yml
+deleted file mode 100644
+index 15d37cb..0000000
+--- a/npmcli-fs/.github/workflows/release.yml
++++ /dev/null
+@@ -1,299 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Release
+-
+-on:
+-  workflow_dispatch:
+-  push:
+-    branches:
+-      - main
+-      - latest
+-      - release/v*
+-
+-permissions:
+-  contents: write
+-  pull-requests: write
+-  checks: write
+-
+-jobs:
+-  release:
+-    outputs:
+-      pr: ${{ steps.release.outputs.pr }}
+-      releases: ${{ steps.release.outputs.releases }}
+-      release-flags: ${{ steps.release.outputs.release-flags }}
+-      branch: ${{ steps.release.outputs.pr-branch }}
+-      pr-number: ${{ steps.release.outputs.pr-number }}
+-      comment-id: ${{ steps.pr-comment.outputs.result }}
+-      check-id: ${{ steps.check.outputs.check_id }}
+-    name: Release
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Release Please
+-        id: release
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          npx --offline template-oss-release-please ${{ github.ref_name }} ${{ github.event_name }}
+-      - name: Post Pull Request Comment
+-        if: steps.release.outputs.pr-number
+-        uses: actions/github-script@v6
+-        id: pr-comment
+-        env:
+-          PR_NUMBER: ${{ steps.release.outputs.pr-number }}
+-          REF_NAME: ${{ github.ref_name }}
+-        with:
+-          script: |
+-            const { REF_NAME, PR_NUMBER } = process.env
+-            const repo = { owner: context.repo.owner, repo: context.repo.repo }
+-            const issue = { ...repo, issue_number: PR_NUMBER }
+-
+-            const { data: workflow } = await github.rest.actions.getWorkflowRun({ ...repo, run_id: context.runId })
+-
+-            let body = '## Release Manager\n\n'
+-
+-            const comments = await github.paginate(github.rest.issues.listComments, issue)
+-            let commentId = comments?.find(c => c.user.login === 'github-actions[bot]' && c.body.startsWith(body))?.id
+-
+-            body += `Release workflow run: ${workflow.html_url}\n\n#### Force CI to Rerun for This Release\n\n`
+-            body += `This PR will be updated and CI will run for every non-\`chore:\` commit that is pushed to \`main\`. `
+-            body += `To force CI to rerun, run this command:\n\n`
+-            body += `\`\`\`\ngh workflow run release.yml -r ${REF_NAME}\n\`\`\``
+-
+-            if (commentId) {
+-              await github.rest.issues.updateComment({ ...repo, comment_id: commentId, body })
+-            } else {
+-              const { data: comment } = await github.rest.issues.createComment({ ...issue, body })
+-              commentId = comment?.id
+-            }
+-
+-            return commentId
+-      - name: Get Workflow Job
+-        uses: actions/github-script@v6
+-        if: steps.release.outputs.pr-sha
+-        id: check-output
+-        env:
+-          JOB_NAME: "Release"
+-          MATRIX_NAME: ""
+-        with:
+-          script: |
+-            const { owner, repo } = context.repo
+-
+-            const { data } = await github.rest.actions.listJobsForWorkflowRun({
+-              owner,
+-              repo,
+-              run_id: context.runId,
+-              per_page: 100
+-            })
+-
+-            const jobName = process.env.JOB_NAME + process.env.MATRIX_NAME
+-            const job = data.jobs.find(j => j.name.endsWith(jobName))
+-            const jobUrl = job?.html_url
+-
+-            const shaUrl = `${context.serverUrl}/${owner}/${repo}/commit/${{ steps.release.outputs.pr-sha }}`
+-
+-            let summary = `This check is assosciated with ${shaUrl}\n\n`
+-
+-            if (jobUrl) {
+-              summary += `For run logs, click here: ${jobUrl}`
+-            } else {
+-              summary += `Run logs could not be found for a job with name: "${jobName}"`
+-            }
+-
+-            return { summary }
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-        if: steps.release.outputs.pr-sha
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Release
+-          sha: ${{ steps.release.outputs.pr-sha }}
+-          output: ${{ steps.check-output.outputs.result }}
+-
+-  update:
+-    needs: release
+-    outputs:
+-      sha: ${{ steps.commit.outputs.sha }}
+-      check-id: ${{ steps.check.outputs.check_id }}
+-    name: Update - Release
+-    if: github.repository_owner == 'npm' && needs.release.outputs.pr
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          fetch-depth: 0
+-          ref: ${{ needs.release.outputs.branch }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Run Post Pull Request Actions
+-        env:
+-          RELEASE_PR_NUMBER: ${{ needs.release.outputs.pr-number }}
+-          RELEASE_COMMENT_ID: ${{ needs.release.outputs.comment-id }}
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          npm exec --offline -- template-oss-release-manager
+-          npm run rp-pull-request --ignore-scripts --if-present
+-      - name: Commit
+-        id: commit
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          git commit --all --amend --no-edit || true
+-          git push --force-with-lease
+-          echo "::set-output  name=sha::$(git rev-parse HEAD)"
+-      - name: Get Workflow Job
+-        uses: actions/github-script@v6
+-        if: steps.commit.outputs.sha
+-        id: check-output
+-        env:
+-          JOB_NAME: "Update - Release"
+-          MATRIX_NAME: ""
+-        with:
+-          script: |
+-            const { owner, repo } = context.repo
+-
+-            const { data } = await github.rest.actions.listJobsForWorkflowRun({
+-              owner,
+-              repo,
+-              run_id: context.runId,
+-              per_page: 100
+-            })
+-
+-            const jobName = process.env.JOB_NAME + process.env.MATRIX_NAME
+-            const job = data.jobs.find(j => j.name.endsWith(jobName))
+-            const jobUrl = job?.html_url
+-
+-            const shaUrl = `${context.serverUrl}/${owner}/${repo}/commit/${{ steps.commit.outputs.sha }}`
+-
+-            let summary = `This check is assosciated with ${shaUrl}\n\n`
+-
+-            if (jobUrl) {
+-              summary += `For run logs, click here: ${jobUrl}`
+-            } else {
+-              summary += `Run logs could not be found for a job with name: "${jobName}"`
+-            }
+-
+-            return { summary }
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-        if: steps.commit.outputs.sha
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Release
+-          sha: ${{ steps.commit.outputs.sha }}
+-          output: ${{ steps.check-output.outputs.result }}
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: needs.release.outputs.check-id && always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ job.status }}
+-          check_id: ${{ needs.release.outputs.check-id }}
+-
+-  ci:
+-    name: CI - Release
+-    needs: [ release, update ]
+-    if: needs.release.outputs.pr
+-    uses: ./.github/workflows/ci-release.yml
+-    with:
+-      ref: ${{ needs.release.outputs.branch }}
+-      check-sha: ${{ needs.update.outputs.sha }}
+-
+-  post-ci:
+-    needs: [ release, update, ci ]
+-    name: Post CI - Release
+-    if: github.repository_owner == 'npm' && needs.release.outputs.pr && always()
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Get Needs Result
+-        id: needs-result
+-        run: |
+-          result=""
+-          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]]; then
+-            result="failure"
+-          elif [[ "${{ contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+-            result="cancelled"
+-          else
+-            result="success"
+-          fi
+-          echo "::set-output name=result::$result"
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: needs.update.outputs.check-id && always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ steps.needs-result.outputs.result }}
+-          check_id: ${{ needs.update.outputs.check-id }}
+-
+-  post-release:
+-    needs: release
+-    name: Post Release - Release
+-    if: github.repository_owner == 'npm' && needs.release.outputs.releases
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Run Post Release Actions
+-        env:
+-          RELEASES: ${{ needs.release.outputs.releases }}
+-        run: |
+-          npm run rp-release --ignore-scripts --if-present ${{ join(fromJSON(needs.release.outputs.release-flags), ' ') }}
+diff --git a/npmcli-fs/.gitignore b/npmcli-fs/.gitignore
+deleted file mode 100644
+index 0ec3c84..0000000
+--- a/npmcli-fs/.gitignore
++++ /dev/null
+@@ -1,28 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-# ignore everything in the root
+-/*
+-
+-# keep these
+-!**/.gitignore
+-!/.commitlintrc.js
+-!/.eslintrc.js
+-!/.eslintrc.local.*
+-!/.github/
+-!/.gitignore
+-!/.npmrc
+-!/.release-please-manifest.json
+-!/bin/
+-!/CHANGELOG*
+-!/CODE_OF_CONDUCT.md
+-!/docs/
+-!/lib/
+-!/LICENSE*
+-!/map.js
+-!/package.json
+-!/README*
+-!/release-please-config.json
+-!/scripts/
+-!/SECURITY.md
+-!/tap-snapshots/
+-!/test/
+diff --git a/npmcli-fs/.npmrc b/npmcli-fs/.npmrc
+deleted file mode 100644
+index 529f93e..0000000
+--- a/npmcli-fs/.npmrc
++++ /dev/null
+@@ -1,3 +0,0 @@
+-; This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-package-lock=false
+diff --git a/npmcli-fs/.release-please-manifest.json b/npmcli-fs/.release-please-manifest.json
+deleted file mode 100644
+index ada7355..0000000
+--- a/npmcli-fs/.release-please-manifest.json
++++ /dev/null
+@@ -1,3 +0,0 @@
+-{
+-  ".": "3.1.0"
+-}
+diff --git a/npmcli-fs/CHANGELOG.md b/npmcli-fs/CHANGELOG.md
+deleted file mode 100644
+index c1a212e..0000000
+--- a/npmcli-fs/CHANGELOG.md
++++ /dev/null
+@@ -1,66 +0,0 @@
+-# Changelog
+-
+-## [3.1.0](https://github.com/npm/fs/compare/v3.0.0...v3.1.0) (2022-11-03)
+-
+-### Features
+-
+-* [`ecbb150`](https://github.com/npm/fs/commit/ecbb1507e0f6af546c17719426807ec3716c5b54) [#63](https://github.com/npm/fs/pull/63) port @npmcli/move-file (#63) (@lukekarrys)
+-* [`1268710`](https://github.com/npm/fs/commit/126871003bd0fcf615ac15621b11fec03e76ed2d) [#62](https://github.com/npm/fs/pull/62) add readdirScoped method (@lukekarrys)
+-
+-## [3.0.0](https://github.com/npm/fs/compare/v2.1.2...v3.0.0) (2022-10-11)
+-
+-### ⚠️ BREAKING CHANGES
+-
+-* this package no longer exports the full set of core fs functions
+-* this removes the `owner` option from all methods that previously supported it, as well as the `withOwner` and `withOwnerSync` methods
+-* `@npmcli/fs` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+-
+-### Features
+-
+-* [`b788931`](https://github.com/npm/fs/commit/b78893107ae447c4ac65182aef24d9f39a46cd45) [#54](https://github.com/npm/fs/pull/54) remove custom promisification in favor of fs/promises (#54) (@nlf)
+-* [`e666309`](https://github.com/npm/fs/commit/e66630906e0796fe0cd5fdda970f1be30243fb1c) [#53](https://github.com/npm/fs/pull/53) remove owner related code as well as stale polyfills (#53) (@nlf)
+-* [`895d205`](https://github.com/npm/fs/commit/895d205502851ce1707b3ed0c1935e414c10be6b) [#46](https://github.com/npm/fs/pull/46) postinstall for dependabot template-oss PR (@lukekarrys)
+-
+-## [2.1.2](https://github.com/npm/fs/compare/v2.1.1...v2.1.2) (2022-08-15)
+-
+-
+-### Bug Fixes
+-
+-* linting ([#37](https://github.com/npm/fs/issues/37)) ([816bb74](https://github.com/npm/fs/commit/816bb74233cb029188e5236deea4dc58fbb70a94))
+-
+-## [2.1.1](https://github.com/npm/fs/compare/v2.1.0...v2.1.1) (2022-07-20)
+-
+-
+-### Bug Fixes
+-
+-* remove polyfills which are out of range of our engines ([#35](https://github.com/npm/fs/issues/35)) ([be1e7b2](https://github.com/npm/fs/commit/be1e7b262de3e1cf6b2803173094c73676446fd7))
+-
+-## [2.1.0](https://www.github.com/npm/fs/compare/v2.0.1...v2.1.0) (2022-03-21)
+-
+-
+-### Features
+-
+-* add withOwner and withOwnerSync methods ([#21](https://www.github.com/npm/fs/issues/21)) ([40ee281](https://www.github.com/npm/fs/commit/40ee28171138070fc28914689a190bf0727af555))
+-
+-### [2.0.1](https://www.github.com/npm/fs/compare/v2.0.0...v2.0.1) (2022-02-23)
+-
+-
+-### Bug Fixes
+-
+-* add repo entry to package.json ([#10](https://www.github.com/npm/fs/issues/10)) ([eb723e4](https://www.github.com/npm/fs/commit/eb723e44cbddd1d5c568fdfb1297a18672c41085))
+-
+-## [2.0.0](https://www.github.com/npm/fs/compare/v1.1.1...v2.0.0) (2022-02-23)
+-
+-
+-### ⚠ BREAKING CHANGES
+-
+-* This removes support for node 10 and non-LTS versions of 12 and 14
+-
+-### Bug Fixes
+-
+-* update @npmcli/template-oss ([#9](https://www.github.com/npm/fs/issues/9)) ([7dae6fd](https://www.github.com/npm/fs/commit/7dae6fdf461a1fff7c38943feb3b43315a25c5e3))
+-
+-
+-### Dependencies
+-
+-* update @gar/promisify requirement from ^1.0.1 to ^1.1.3 ([#14](https://www.github.com/npm/fs/issues/14)) ([e24e318](https://www.github.com/npm/fs/commit/e24e318fc024255923e5821cd19c817c9eec73b5))
+diff --git a/npmcli-fs/CODE_OF_CONDUCT.md b/npmcli-fs/CODE_OF_CONDUCT.md
+deleted file mode 100644
+index 167043c..0000000
+--- a/npmcli-fs/CODE_OF_CONDUCT.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+-
+-All interactions in this repo are covered by the [npm Code of
+-Conduct](https://docs.npmjs.com/policies/conduct)
+-
+-The npm cli team may, at its own discretion, moderate, remove, or edit
+-any interactions such as pull requests, issues, and comments.
+diff --git a/npmcli-fs/LICENSE.md b/npmcli-fs/LICENSE.md
+deleted file mode 100644
+index 5fc208f..0000000
+--- a/npmcli-fs/LICENSE.md
++++ /dev/null
+@@ -1,20 +0,0 @@
+-<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+-
+-ISC License
+-
+-Copyright npm, Inc.
+-
+-Permission to use, copy, modify, and/or distribute this
+-software for any purpose with or without fee is hereby
+-granted, provided that the above copyright notice and this
+-permission notice appear in all copies.
+-
+-THE SOFTWARE IS PROVIDED "AS IS" AND NPM DISCLAIMS ALL
+-WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
+-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO
+-EVENT SHALL NPM BE LIABLE FOR ANY SPECIAL, DIRECT,
+-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
+-USE OR PERFORMANCE OF THIS SOFTWARE.
+diff --git a/npmcli-fs/README.md b/npmcli-fs/README.md
+deleted file mode 100644
+index e776ff0..0000000
+--- a/npmcli-fs/README.md
++++ /dev/null
+@@ -1,97 +0,0 @@
+-# @npmcli/fs
+-
+-polyfills, and extensions, of the core `fs` module.
+-
+-## Features
+-
+-- `fs.cp` polyfill for node < 16.7.0
+-- `fs.withTempDir` added
+-- `fs.readdirScoped` added
+-- `fs.moveFile` added
+-
+-## `fs.withTempDir(root, fn, options) -> Promise`
+-
+-### Parameters
+-
+-- `root`: the directory in which to create the temporary directory
+-- `fn`: a function that will be called with the path to the temporary directory
+-- `options`
+-  - `tmpPrefix`: a prefix to be used in the generated directory name
+-
+-### Usage
+-
+-The `withTempDir` function creates a temporary directory, runs the provided
+-function (`fn`), then removes the temporary directory and resolves or rejects
+-based on the result of `fn`.
+-
+-```js
+-const fs = require('@npmcli/fs')
+-const os = require('os')
+-
+-// this function will be called with the full path to the temporary directory
+-// it is called with `await` behind the scenes, so can be async if desired.
+-const myFunction = async (tempPath) => {
+-  return 'done!'
+-}
+-
+-const main = async () => {
+-  const result = await fs.withTempDir(os.tmpdir(), myFunction)
+-  // result === 'done!'
+-}
+-
+-main()
+-```
+-
+-## `fs.readdirScoped(root) -> Promise`
+-
+-### Parameters
+-
+-- `root`: the directory to read
+-
+-### Usage
+-
+-Like `fs.readdir` but handling `@org/module` dirs as if they were
+-a single entry.
+-
+-```javascript
+-const readdir = require('readdir-scoped-modules')
+-const entries = await readdir('node_modules')
+-// entries will be something like: ['a', '@org/foo', '@org/bar']
+-```
+-
+-## `fs.moveFile(source, dest, options) -> Promise`
+-
+-A fork of [move-file](https://github.com/sindresorhus/move-file) with
+-support for Common JS.
+-
+-### Highlights
+-
+-- Promise API.
+-- Supports moving a file across partitions and devices.
+-- Optionally prevent overwriting an existing file.
+-- Creates non-existent destination directories for you.
+-- Automatically recurses when source is a directory.
+-
+-### Parameters
+-
+-- `source`: File, or directory, you want to move.
+-- `dest`: Where you want the file or directory moved.
+-- `options`
+-  - `overwrite` (`boolean`, default: `true`): Overwrite existing destination file(s).
+-
+-### Usage
+-
+-The built-in
+-[`fs.rename()`](https://nodejs.org/api/fs.html#fs_fs_rename_oldpath_newpath_callback)
+-is just a JavaScript wrapper for the C `rename(2)` function, which doesn't
+-support moving files across partitions or devices. This module is what you
+-would have expected `fs.rename()` to be.
+-
+-```js
+-const { moveFile } = require('@npmcli/fs');
+-
+-(async () => {
+-	await moveFile('source/unicorn.png', 'destination/unicorn.png');
+-	console.log('The file has been moved');
+-})();
+-```
+diff --git a/npmcli-fs/SECURITY.md b/npmcli-fs/SECURITY.md
+deleted file mode 100644
+index a93106d..0000000
+--- a/npmcli-fs/SECURITY.md
++++ /dev/null
+@@ -1,3 +0,0 @@
+-<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+-
+-Please send vulnerability reports through [hackerone](https://hackerone.com/github).
+diff --git a/npmcli-fs/lib/common/get-options.js b/npmcli-fs/lib/common/get-options.js
+deleted file mode 100644
+index cb5982f..0000000
+--- a/npmcli-fs/lib/common/get-options.js
++++ /dev/null
+@@ -1,20 +0,0 @@
+-// given an input that may or may not be an object, return an object that has
+-// a copy of every defined property listed in 'copy'. if the input is not an
+-// object, assign it to the property named by 'wrap'
+-const getOptions = (input, { copy, wrap }) => {
+-  const result = {}
+-
+-  if (input && typeof input === 'object') {
+-    for (const prop of copy) {
+-      if (input[prop] !== undefined) {
+-        result[prop] = input[prop]
+-      }
+-    }
+-  } else {
+-    result[wrap] = input
+-  }
+-
+-  return result
+-}
+-
+-module.exports = getOptions
+diff --git a/npmcli-fs/lib/common/node.js b/npmcli-fs/lib/common/node.js
+deleted file mode 100644
+index 4d13bc0..0000000
+--- a/npmcli-fs/lib/common/node.js
++++ /dev/null
+@@ -1,9 +0,0 @@
+-const semver = require('semver')
+-
+-const satisfies = (range) => {
+-  return semver.satisfies(process.version, range, { includePrerelease: true })
+-}
+-
+-module.exports = {
+-  satisfies,
+-}
+diff --git a/npmcli-fs/lib/cp/LICENSE b/npmcli-fs/lib/cp/LICENSE
+deleted file mode 100644
+index 93546df..0000000
+--- a/npmcli-fs/lib/cp/LICENSE
++++ /dev/null
+@@ -1,15 +0,0 @@
+-(The MIT License)
+-
+-Copyright (c) 2011-2017 JP Richardson
+-
+-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
+-(the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,
+- merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+- furnished to do so, subject to the following conditions:
+-
+-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-
+-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+-OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+diff --git a/npmcli-fs/lib/cp/errors.js b/npmcli-fs/lib/cp/errors.js
+deleted file mode 100644
+index 1cd1e05..0000000
+--- a/npmcli-fs/lib/cp/errors.js
++++ /dev/null
+@@ -1,129 +0,0 @@
+-'use strict'
+-const { inspect } = require('util')
+-
+-// adapted from node's internal/errors
+-// https://github.com/nodejs/node/blob/c8a04049/lib/internal/errors.js
+-
+-// close copy of node's internal SystemError class.
+-class SystemError {
+-  constructor (code, prefix, context) {
+-    // XXX context.code is undefined in all constructors used in cp/polyfill
+-    // that may be a bug copied from node, maybe the constructor should use
+-    // `code` not `errno`?  nodejs/node#41104
+-    let message = `${prefix}: ${context.syscall} returned ` +
+-                  `${context.code} (${context.message})`
+-
+-    if (context.path !== undefined) {
+-      message += ` ${context.path}`
+-    }
+-    if (context.dest !== undefined) {
+-      message += ` => ${context.dest}`
+-    }
+-
+-    this.code = code
+-    Object.defineProperties(this, {
+-      name: {
+-        value: 'SystemError',
+-        enumerable: false,
+-        writable: true,
+-        configurable: true,
+-      },
+-      message: {
+-        value: message,
+-        enumerable: false,
+-        writable: true,
+-        configurable: true,
+-      },
+-      info: {
+-        value: context,
+-        enumerable: true,
+-        configurable: true,
+-        writable: false,
+-      },
+-      errno: {
+-        get () {
+-          return context.errno
+-        },
+-        set (value) {
+-          context.errno = value
+-        },
+-        enumerable: true,
+-        configurable: true,
+-      },
+-      syscall: {
+-        get () {
+-          return context.syscall
+-        },
+-        set (value) {
+-          context.syscall = value
+-        },
+-        enumerable: true,
+-        configurable: true,
+-      },
+-    })
+-
+-    if (context.path !== undefined) {
+-      Object.defineProperty(this, 'path', {
+-        get () {
+-          return context.path
+-        },
+-        set (value) {
+-          context.path = value
+-        },
+-        enumerable: true,
+-        configurable: true,
+-      })
+-    }
+-
+-    if (context.dest !== undefined) {
+-      Object.defineProperty(this, 'dest', {
+-        get () {
+-          return context.dest
+-        },
+-        set (value) {
+-          context.dest = value
+-        },
+-        enumerable: true,
+-        configurable: true,
+-      })
+-    }
+-  }
+-
+-  toString () {
+-    return `${this.name} [${this.code}]: ${this.message}`
+-  }
+-
+-  [Symbol.for('nodejs.util.inspect.custom')] (_recurseTimes, ctx) {
+-    return inspect(this, {
+-      ...ctx,
+-      getters: true,
+-      customInspect: false,
+-    })
+-  }
+-}
+-
+-function E (code, message) {
+-  module.exports[code] = class NodeError extends SystemError {
+-    constructor (ctx) {
+-      super(code, message, ctx)
+-    }
+-  }
+-}
+-
+-E('ERR_FS_CP_DIR_TO_NON_DIR', 'Cannot overwrite directory with non-directory')
+-E('ERR_FS_CP_EEXIST', 'Target already exists')
+-E('ERR_FS_CP_EINVAL', 'Invalid src or dest')
+-E('ERR_FS_CP_FIFO_PIPE', 'Cannot copy a FIFO pipe')
+-E('ERR_FS_CP_NON_DIR_TO_DIR', 'Cannot overwrite non-directory with directory')
+-E('ERR_FS_CP_SOCKET', 'Cannot copy a socket file')
+-E('ERR_FS_CP_SYMLINK_TO_SUBDIRECTORY', 'Cannot overwrite symlink in subdirectory of self')
+-E('ERR_FS_CP_UNKNOWN', 'Cannot copy an unknown file type')
+-E('ERR_FS_EISDIR', 'Path is a directory')
+-
+-module.exports.ERR_INVALID_ARG_TYPE = class ERR_INVALID_ARG_TYPE extends Error {
+-  constructor (name, expected, actual) {
+-    super()
+-    this.code = 'ERR_INVALID_ARG_TYPE'
+-    this.message = `The ${name} argument must be ${expected}. Received ${typeof actual}`
+-  }
+-}
+diff --git a/npmcli-fs/lib/cp/index.js b/npmcli-fs/lib/cp/index.js
+deleted file mode 100644
+index 972ce7a..0000000
+--- a/npmcli-fs/lib/cp/index.js
++++ /dev/null
+@@ -1,22 +0,0 @@
+-const fs = require('fs/promises')
+-const getOptions = require('../common/get-options.js')
+-const node = require('../common/node.js')
+-const polyfill = require('./polyfill.js')
+-
+-// node 16.7.0 added fs.cp
+-const useNative = node.satisfies('>=16.7.0')
+-
+-const cp = async (src, dest, opts) => {
+-  const options = getOptions(opts, {
+-    copy: ['dereference', 'errorOnExist', 'filter', 'force', 'preserveTimestamps', 'recursive'],
+-  })
+-
+-  // the polyfill is tested separately from this module, no need to hack
+-  // process.version to try to trigger it just for coverage
+-  // istanbul ignore next
+-  return useNative
+-    ? fs.cp(src, dest, options)
+-    : polyfill(src, dest, options)
+-}
+-
+-module.exports = cp
+diff --git a/npmcli-fs/lib/cp/polyfill.js b/npmcli-fs/lib/cp/polyfill.js
+deleted file mode 100644
+index 80eb10d..0000000
+--- a/npmcli-fs/lib/cp/polyfill.js
++++ /dev/null
+@@ -1,428 +0,0 @@
+-// this file is a modified version of the code in node 17.2.0
+-// which is, in turn, a modified version of the fs-extra module on npm
+-// node core changes:
+-// - Use of the assert module has been replaced with core's error system.
+-// - All code related to the glob dependency has been removed.
+-// - Bring your own custom fs module is not currently supported.
+-// - Some basic code cleanup.
+-// changes here:
+-// - remove all callback related code
+-// - drop sync support
+-// - change assertions back to non-internal methods (see options.js)
+-// - throws ENOTDIR when rmdir gets an ENOENT for a path that exists in Windows
+-'use strict'
+-
+-const {
+-  ERR_FS_CP_DIR_TO_NON_DIR,
+-  ERR_FS_CP_EEXIST,
+-  ERR_FS_CP_EINVAL,
+-  ERR_FS_CP_FIFO_PIPE,
+-  ERR_FS_CP_NON_DIR_TO_DIR,
+-  ERR_FS_CP_SOCKET,
+-  ERR_FS_CP_SYMLINK_TO_SUBDIRECTORY,
+-  ERR_FS_CP_UNKNOWN,
+-  ERR_FS_EISDIR,
+-  ERR_INVALID_ARG_TYPE,
+-} = require('./errors.js')
+-const {
+-  constants: {
+-    errno: {
+-      EEXIST,
+-      EISDIR,
+-      EINVAL,
+-      ENOTDIR,
+-    },
+-  },
+-} = require('os')
+-const {
+-  chmod,
+-  copyFile,
+-  lstat,
+-  mkdir,
+-  readdir,
+-  readlink,
+-  stat,
+-  symlink,
+-  unlink,
+-  utimes,
+-} = require('fs/promises')
+-const {
+-  dirname,
+-  isAbsolute,
+-  join,
+-  parse,
+-  resolve,
+-  sep,
+-  toNamespacedPath,
+-} = require('path')
+-const { fileURLToPath } = require('url')
+-
+-const defaultOptions = {
+-  dereference: false,
+-  errorOnExist: false,
+-  filter: undefined,
+-  force: true,
+-  preserveTimestamps: false,
+-  recursive: false,
+-}
+-
+-async function cp (src, dest, opts) {
+-  if (opts != null && typeof opts !== 'object') {
+-    throw new ERR_INVALID_ARG_TYPE('options', ['Object'], opts)
+-  }
+-  return cpFn(
+-    toNamespacedPath(getValidatedPath(src)),
+-    toNamespacedPath(getValidatedPath(dest)),
+-    { ...defaultOptions, ...opts })
+-}
+-
+-function getValidatedPath (fileURLOrPath) {
+-  const path = fileURLOrPath != null && fileURLOrPath.href
+-      && fileURLOrPath.origin
+-    ? fileURLToPath(fileURLOrPath)
+-    : fileURLOrPath
+-  return path
+-}
+-
+-async function cpFn (src, dest, opts) {
+-  // Warn about using preserveTimestamps on 32-bit node
+-  // istanbul ignore next
+-  if (opts.preserveTimestamps && process.arch === 'ia32') {
+-    const warning = 'Using the preserveTimestamps option in 32-bit ' +
+-      'node is not recommended'
+-    process.emitWarning(warning, 'TimestampPrecisionWarning')
+-  }
+-  const stats = await checkPaths(src, dest, opts)
+-  const { srcStat, destStat } = stats
+-  await checkParentPaths(src, srcStat, dest)
+-  if (opts.filter) {
+-    return handleFilter(checkParentDir, destStat, src, dest, opts)
+-  }
+-  return checkParentDir(destStat, src, dest, opts)
+-}
+-
+-async function checkPaths (src, dest, opts) {
+-  const { 0: srcStat, 1: destStat } = await getStats(src, dest, opts)
+-  if (destStat) {
+-    if (areIdentical(srcStat, destStat)) {
+-      throw new ERR_FS_CP_EINVAL({
+-        message: 'src and dest cannot be the same',
+-        path: dest,
+-        syscall: 'cp',
+-        errno: EINVAL,
+-      })
+-    }
+-    if (srcStat.isDirectory() && !destStat.isDirectory()) {
+-      throw new ERR_FS_CP_DIR_TO_NON_DIR({
+-        message: `cannot overwrite directory ${src} ` +
+-            `with non-directory ${dest}`,
+-        path: dest,
+-        syscall: 'cp',
+-        errno: EISDIR,
+-      })
+-    }
+-    if (!srcStat.isDirectory() && destStat.isDirectory()) {
+-      throw new ERR_FS_CP_NON_DIR_TO_DIR({
+-        message: `cannot overwrite non-directory ${src} ` +
+-            `with directory ${dest}`,
+-        path: dest,
+-        syscall: 'cp',
+-        errno: ENOTDIR,
+-      })
+-    }
+-  }
+-
+-  if (srcStat.isDirectory() && isSrcSubdir(src, dest)) {
+-    throw new ERR_FS_CP_EINVAL({
+-      message: `cannot copy ${src} to a subdirectory of self ${dest}`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  }
+-  return { srcStat, destStat }
+-}
+-
+-function areIdentical (srcStat, destStat) {
+-  return destStat.ino && destStat.dev && destStat.ino === srcStat.ino &&
+-    destStat.dev === srcStat.dev
+-}
+-
+-function getStats (src, dest, opts) {
+-  const statFunc = opts.dereference ?
+-    (file) => stat(file, { bigint: true }) :
+-    (file) => lstat(file, { bigint: true })
+-  return Promise.all([
+-    statFunc(src),
+-    statFunc(dest).catch((err) => {
+-      // istanbul ignore next: unsure how to cover.
+-      if (err.code === 'ENOENT') {
+-        return null
+-      }
+-      // istanbul ignore next: unsure how to cover.
+-      throw err
+-    }),
+-  ])
+-}
+-
+-async function checkParentDir (destStat, src, dest, opts) {
+-  const destParent = dirname(dest)
+-  const dirExists = await pathExists(destParent)
+-  if (dirExists) {
+-    return getStatsForCopy(destStat, src, dest, opts)
+-  }
+-  await mkdir(destParent, { recursive: true })
+-  return getStatsForCopy(destStat, src, dest, opts)
+-}
+-
+-function pathExists (dest) {
+-  return stat(dest).then(
+-    () => true,
+-    // istanbul ignore next: not sure when this would occur
+-    (err) => (err.code === 'ENOENT' ? false : Promise.reject(err)))
+-}
+-
+-// Recursively check if dest parent is a subdirectory of src.
+-// It works for all file types including symlinks since it
+-// checks the src and dest inodes. It starts from the deepest
+-// parent and stops once it reaches the src parent or the root path.
+-async function checkParentPaths (src, srcStat, dest) {
+-  const srcParent = resolve(dirname(src))
+-  const destParent = resolve(dirname(dest))
+-  if (destParent === srcParent || destParent === parse(destParent).root) {
+-    return
+-  }
+-  let destStat
+-  try {
+-    destStat = await stat(destParent, { bigint: true })
+-  } catch (err) {
+-    // istanbul ignore else: not sure when this would occur
+-    if (err.code === 'ENOENT') {
+-      return
+-    }
+-    // istanbul ignore next: not sure when this would occur
+-    throw err
+-  }
+-  if (areIdentical(srcStat, destStat)) {
+-    throw new ERR_FS_CP_EINVAL({
+-      message: `cannot copy ${src} to a subdirectory of self ${dest}`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  }
+-  return checkParentPaths(src, srcStat, destParent)
+-}
+-
+-const normalizePathToArray = (path) =>
+-  resolve(path).split(sep).filter(Boolean)
+-
+-// Return true if dest is a subdir of src, otherwise false.
+-// It only checks the path strings.
+-function isSrcSubdir (src, dest) {
+-  const srcArr = normalizePathToArray(src)
+-  const destArr = normalizePathToArray(dest)
+-  return srcArr.every((cur, i) => destArr[i] === cur)
+-}
+-
+-async function handleFilter (onInclude, destStat, src, dest, opts, cb) {
+-  const include = await opts.filter(src, dest)
+-  if (include) {
+-    return onInclude(destStat, src, dest, opts, cb)
+-  }
+-}
+-
+-function startCopy (destStat, src, dest, opts) {
+-  if (opts.filter) {
+-    return handleFilter(getStatsForCopy, destStat, src, dest, opts)
+-  }
+-  return getStatsForCopy(destStat, src, dest, opts)
+-}
+-
+-async function getStatsForCopy (destStat, src, dest, opts) {
+-  const statFn = opts.dereference ? stat : lstat
+-  const srcStat = await statFn(src)
+-  // istanbul ignore else: can't portably test FIFO
+-  if (srcStat.isDirectory() && opts.recursive) {
+-    return onDir(srcStat, destStat, src, dest, opts)
+-  } else if (srcStat.isDirectory()) {
+-    throw new ERR_FS_EISDIR({
+-      message: `${src} is a directory (not copied)`,
+-      path: src,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  } else if (srcStat.isFile() ||
+-            srcStat.isCharacterDevice() ||
+-            srcStat.isBlockDevice()) {
+-    return onFile(srcStat, destStat, src, dest, opts)
+-  } else if (srcStat.isSymbolicLink()) {
+-    return onLink(destStat, src, dest)
+-  } else if (srcStat.isSocket()) {
+-    throw new ERR_FS_CP_SOCKET({
+-      message: `cannot copy a socket file: ${dest}`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  } else if (srcStat.isFIFO()) {
+-    throw new ERR_FS_CP_FIFO_PIPE({
+-      message: `cannot copy a FIFO pipe: ${dest}`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  }
+-  // istanbul ignore next: should be unreachable
+-  throw new ERR_FS_CP_UNKNOWN({
+-    message: `cannot copy an unknown file type: ${dest}`,
+-    path: dest,
+-    syscall: 'cp',
+-    errno: EINVAL,
+-  })
+-}
+-
+-function onFile (srcStat, destStat, src, dest, opts) {
+-  if (!destStat) {
+-    return _copyFile(srcStat, src, dest, opts)
+-  }
+-  return mayCopyFile(srcStat, src, dest, opts)
+-}
+-
+-async function mayCopyFile (srcStat, src, dest, opts) {
+-  if (opts.force) {
+-    await unlink(dest)
+-    return _copyFile(srcStat, src, dest, opts)
+-  } else if (opts.errorOnExist) {
+-    throw new ERR_FS_CP_EEXIST({
+-      message: `${dest} already exists`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EEXIST,
+-    })
+-  }
+-}
+-
+-async function _copyFile (srcStat, src, dest, opts) {
+-  await copyFile(src, dest)
+-  if (opts.preserveTimestamps) {
+-    return handleTimestampsAndMode(srcStat.mode, src, dest)
+-  }
+-  return setDestMode(dest, srcStat.mode)
+-}
+-
+-async function handleTimestampsAndMode (srcMode, src, dest) {
+-  // Make sure the file is writable before setting the timestamp
+-  // otherwise open fails with EPERM when invoked with 'r+'
+-  // (through utimes call)
+-  if (fileIsNotWritable(srcMode)) {
+-    await makeFileWritable(dest, srcMode)
+-    return setDestTimestampsAndMode(srcMode, src, dest)
+-  }
+-  return setDestTimestampsAndMode(srcMode, src, dest)
+-}
+-
+-function fileIsNotWritable (srcMode) {
+-  return (srcMode & 0o200) === 0
+-}
+-
+-function makeFileWritable (dest, srcMode) {
+-  return setDestMode(dest, srcMode | 0o200)
+-}
+-
+-async function setDestTimestampsAndMode (srcMode, src, dest) {
+-  await setDestTimestamps(src, dest)
+-  return setDestMode(dest, srcMode)
+-}
+-
+-function setDestMode (dest, srcMode) {
+-  return chmod(dest, srcMode)
+-}
+-
+-async function setDestTimestamps (src, dest) {
+-  // The initial srcStat.atime cannot be trusted
+-  // because it is modified by the read(2) system call
+-  // (See https://nodejs.org/api/fs.html#fs_stat_time_values)
+-  const updatedSrcStat = await stat(src)
+-  return utimes(dest, updatedSrcStat.atime, updatedSrcStat.mtime)
+-}
+-
+-function onDir (srcStat, destStat, src, dest, opts) {
+-  if (!destStat) {
+-    return mkDirAndCopy(srcStat.mode, src, dest, opts)
+-  }
+-  return copyDir(src, dest, opts)
+-}
+-
+-async function mkDirAndCopy (srcMode, src, dest, opts) {
+-  await mkdir(dest)
+-  await copyDir(src, dest, opts)
+-  return setDestMode(dest, srcMode)
+-}
+-
+-async function copyDir (src, dest, opts) {
+-  const dir = await readdir(src)
+-  for (let i = 0; i < dir.length; i++) {
+-    const item = dir[i]
+-    const srcItem = join(src, item)
+-    const destItem = join(dest, item)
+-    const { destStat } = await checkPaths(srcItem, destItem, opts)
+-    await startCopy(destStat, srcItem, destItem, opts)
+-  }
+-}
+-
+-async function onLink (destStat, src, dest) {
+-  let resolvedSrc = await readlink(src)
+-  if (!isAbsolute(resolvedSrc)) {
+-    resolvedSrc = resolve(dirname(src), resolvedSrc)
+-  }
+-  if (!destStat) {
+-    return symlink(resolvedSrc, dest)
+-  }
+-  let resolvedDest
+-  try {
+-    resolvedDest = await readlink(dest)
+-  } catch (err) {
+-    // Dest exists and is a regular file or directory,
+-    // Windows may throw UNKNOWN error. If dest already exists,
+-    // fs throws error anyway, so no need to guard against it here.
+-    // istanbul ignore next: can only test on windows
+-    if (err.code === 'EINVAL' || err.code === 'UNKNOWN') {
+-      return symlink(resolvedSrc, dest)
+-    }
+-    // istanbul ignore next: should not be possible
+-    throw err
+-  }
+-  if (!isAbsolute(resolvedDest)) {
+-    resolvedDest = resolve(dirname(dest), resolvedDest)
+-  }
+-  if (isSrcSubdir(resolvedSrc, resolvedDest)) {
+-    throw new ERR_FS_CP_EINVAL({
+-      message: `cannot copy ${resolvedSrc} to a subdirectory of self ` +
+-            `${resolvedDest}`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  }
+-  // Do not copy if src is a subdir of dest since unlinking
+-  // dest in this case would result in removing src contents
+-  // and therefore a broken symlink would be created.
+-  const srcStat = await stat(src)
+-  if (srcStat.isDirectory() && isSrcSubdir(resolvedDest, resolvedSrc)) {
+-    throw new ERR_FS_CP_SYMLINK_TO_SUBDIRECTORY({
+-      message: `cannot overwrite ${resolvedDest} with ${resolvedSrc}`,
+-      path: dest,
+-      syscall: 'cp',
+-      errno: EINVAL,
+-    })
+-  }
+-  return copyLink(resolvedSrc, dest)
+-}
+-
+-async function copyLink (resolvedSrc, dest) {
+-  await unlink(dest)
+-  return symlink(resolvedSrc, dest)
+-}
+-
+-module.exports = cp
+diff --git a/npmcli-fs/lib/index.js b/npmcli-fs/lib/index.js
+deleted file mode 100644
+index 81c7463..0000000
+--- a/npmcli-fs/lib/index.js
++++ /dev/null
+@@ -1,13 +0,0 @@
+-'use strict'
+-
+-const cp = require('./cp/index.js')
+-const withTempDir = require('./with-temp-dir.js')
+-const readdirScoped = require('./readdir-scoped.js')
+-const moveFile = require('./move-file.js')
+-
+-module.exports = {
+-  cp,
+-  withTempDir,
+-  readdirScoped,
+-  moveFile,
+-}
+diff --git a/npmcli-fs/lib/move-file.js b/npmcli-fs/lib/move-file.js
+deleted file mode 100644
+index d56e06d..0000000
+--- a/npmcli-fs/lib/move-file.js
++++ /dev/null
+@@ -1,78 +0,0 @@
+-const { dirname, join, resolve, relative, isAbsolute } = require('path')
+-const fs = require('fs/promises')
+-
+-const pathExists = async path => {
+-  try {
+-    await fs.access(path)
+-    return true
+-  } catch (er) {
+-    return er.code !== 'ENOENT'
+-  }
+-}
+-
+-const moveFile = async (source, destination, options = {}, root = true, symlinks = []) => {
+-  if (!source || !destination) {
+-    throw new TypeError('`source` and `destination` file required')
+-  }
+-
+-  options = {
+-    overwrite: true,
+-    ...options,
+-  }
+-
+-  if (!options.overwrite && await pathExists(destination)) {
+-    throw new Error(`The destination file exists: ${destination}`)
+-  }
+-
+-  await fs.mkdir(dirname(destination), { recursive: true })
+-
+-  try {
+-    await fs.rename(source, destination)
+-  } catch (error) {
+-    if (error.code === 'EXDEV' || error.code === 'EPERM') {
+-      const sourceStat = await fs.lstat(source)
+-      if (sourceStat.isDirectory()) {
+-        const files = await fs.readdir(source)
+-        await Promise.all(files.map((file) =>
+-          moveFile(join(source, file), join(destination, file), options, false, symlinks)
+-        ))
+-      } else if (sourceStat.isSymbolicLink()) {
+-        symlinks.push({ source, destination })
+-      } else {
+-        await fs.copyFile(source, destination)
+-      }
+-    } else {
+-      throw error
+-    }
+-  }
+-
+-  if (root) {
+-    await Promise.all(symlinks.map(async ({ source: symSource, destination: symDestination }) => {
+-      let target = await fs.readlink(symSource)
+-      // junction symlinks in windows will be absolute paths, so we need to
+-      // make sure they point to the symlink destination
+-      if (isAbsolute(target)) {
+-        target = resolve(symDestination, relative(symSource, target))
+-      }
+-      // try to determine what the actual file is so we can create the correct
+-      // type of symlink in windows
+-      let targetStat = 'file'
+-      try {
+-        targetStat = await fs.stat(resolve(dirname(symSource), target))
+-        if (targetStat.isDirectory()) {
+-          targetStat = 'junction'
+-        }
+-      } catch {
+-        // targetStat remains 'file'
+-      }
+-      await fs.symlink(
+-        target,
+-        symDestination,
+-        targetStat
+-      )
+-    }))
+-    await fs.rm(source, { recursive: true, force: true })
+-  }
+-}
+-
+-module.exports = moveFile
+diff --git a/npmcli-fs/lib/readdir-scoped.js b/npmcli-fs/lib/readdir-scoped.js
+deleted file mode 100644
+index cd601df..0000000
+--- a/npmcli-fs/lib/readdir-scoped.js
++++ /dev/null
+@@ -1,20 +0,0 @@
+-const { readdir } = require('fs/promises')
+-const { join } = require('path')
+-
+-const readdirScoped = async (dir) => {
+-  const results = []
+-
+-  for (const item of await readdir(dir)) {
+-    if (item.startsWith('@')) {
+-      for (const scopedItem of await readdir(join(dir, item))) {
+-        results.push(join(item, scopedItem))
+-      }
+-    } else {
+-      results.push(item)
+-    }
+-  }
+-
+-  return results
+-}
+-
+-module.exports = readdirScoped
+diff --git a/npmcli-fs/lib/with-temp-dir.js b/npmcli-fs/lib/with-temp-dir.js
+deleted file mode 100644
+index 0738ac4..0000000
+--- a/npmcli-fs/lib/with-temp-dir.js
++++ /dev/null
+@@ -1,39 +0,0 @@
+-const { join, sep } = require('path')
+-
+-const getOptions = require('./common/get-options.js')
+-const { mkdir, mkdtemp, rm } = require('fs/promises')
+-
+-// create a temp directory, ensure its permissions match its parent, then call
+-// the supplied function passing it the path to the directory. clean up after
+-// the function finishes, whether it throws or not
+-const withTempDir = async (root, fn, opts) => {
+-  const options = getOptions(opts, {
+-    copy: ['tmpPrefix'],
+-  })
+-  // create the directory
+-  await mkdir(root, { recursive: true })
+-
+-  const target = await mkdtemp(join(`${root}${sep}`, options.tmpPrefix || ''))
+-  let err
+-  let result
+-
+-  try {
+-    result = await fn(target)
+-  } catch (_err) {
+-    err = _err
+-  }
+-
+-  try {
+-    await rm(target, { force: true, recursive: true })
+-  } catch {
+-    // ignore errors
+-  }
+-
+-  if (err) {
+-    throw err
+-  }
+-
+-  return result
+-}
+-
+-module.exports = withTempDir
+diff --git a/npmcli-fs/package.json b/npmcli-fs/package.json
+deleted file mode 100644
+index 28eb613..0000000
+--- a/npmcli-fs/package.json
++++ /dev/null
+@@ -1,52 +0,0 @@
+-{
+-  "name": "@npmcli/fs",
+-  "version": "3.1.0",
+-  "description": "filesystem utilities for the npm cli",
+-  "main": "lib/index.js",
+-  "files": [
+-    "bin/",
+-    "lib/"
+-  ],
+-  "scripts": {
+-    "snap": "tap",
+-    "test": "tap",
+-    "npmclilint": "npmcli-lint",
+-    "lint": "eslint \"**/*.js\"",
+-    "lintfix": "npm run lint -- --fix",
+-    "posttest": "npm run lint",
+-    "postsnap": "npm run lintfix --",
+-    "postlint": "template-oss-check",
+-    "template-oss-apply": "template-oss-apply --force"
+-  },
+-  "repository": {
+-    "type": "git",
+-    "url": "https://github.com/npm/fs.git"
+-  },
+-  "keywords": [
+-    "npm",
+-    "oss"
+-  ],
+-  "author": "GitHub Inc.",
+-  "license": "ISC",
+-  "devDependencies": {
+-    "@npmcli/eslint-config": "^4.0.0",
+-    "@npmcli/template-oss": "4.8.0",
+-    "tap": "^16.0.1"
+-  },
+-  "dependencies": {
+-    "semver": "^7.3.5"
+-  },
+-  "engines": {
+-    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+-  },
+-  "templateOSS": {
+-    "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+-    "version": "4.8.0"
+-  },
+-  "tap": {
+-    "nyc-arg": [
+-      "--exclude",
+-      "tap-snapshots/**"
+-    ]
+-  }
+-}
+diff --git a/npmcli-fs/release-please-config.json b/npmcli-fs/release-please-config.json
+deleted file mode 100644
+index 73d1e35..0000000
+--- a/npmcli-fs/release-please-config.json
++++ /dev/null
+@@ -1,36 +0,0 @@
+-{
+-  "exclude-packages-from-root": true,
+-  "group-pull-request-title-pattern": "chore: release ${version}",
+-  "pull-request-title-pattern": "chore: release${component} ${version}",
+-  "changelog-sections": [
+-    {
+-      "type": "feat",
+-      "section": "Features",
+-      "hidden": false
+-    },
+-    {
+-      "type": "fix",
+-      "section": "Bug Fixes",
+-      "hidden": false
+-    },
+-    {
+-      "type": "docs",
+-      "section": "Documentation",
+-      "hidden": false
+-    },
+-    {
+-      "type": "deps",
+-      "section": "Dependencies",
+-      "hidden": false
+-    },
+-    {
+-      "type": "chore",
+-      "hidden": true
+-    }
+-  ],
+-  "packages": {
+-    ".": {
+-      "package-name": ""
+-    }
+-  }
+-}
+diff --git a/npmcli-fs/test/common/get-options.js b/npmcli-fs/test/common/get-options.js
+deleted file mode 100644
+index a044abc..0000000
+--- a/npmcli-fs/test/common/get-options.js
++++ /dev/null
+@@ -1,25 +0,0 @@
+-const t = require('tap')
+-
+-const getOptions = require('../../lib/common/get-options.js')
+-
+-t.test('copies named properties in an object', async (t) => {
+-  const input = {
+-    one: 'one',
+-    two: 'two',
+-    three: 'three',
+-  }
+-
+-  const result = getOptions(input, {
+-    copy: ['one', 'two'],
+-  })
+-  t.same(result, { one: 'one', two: 'two' }, 'only copied named properties')
+-})
+-
+-t.test('wraps non-object values in named property', async (t) => {
+-  const input = 'bar'
+-
+-  const result = getOptions(input, {
+-    wrap: 'foo',
+-  })
+-  t.same(result, { foo: 'bar' }, 'wrapped non-object in object')
+-})
+diff --git a/npmcli-fs/test/common/node.js b/npmcli-fs/test/common/node.js
+deleted file mode 100644
+index af185d7..0000000
+--- a/npmcli-fs/test/common/node.js
++++ /dev/null
+@@ -1,17 +0,0 @@
+-const t = require('tap')
+-
+-const node = require('../../lib/common/node.js')
+-
+-// strip off leading 'v'
+-const version = process.version.slice(1)
+-const major = Number(version.split('.')[0])
+-
+-t.test('returns true if range matches', async (t) => {
+-  const range = `^${major}`
+-  t.equal(node.satisfies(range), true, 'range matches')
+-})
+-
+-t.test('returns false if range does not match', async (t) => {
+-  const range = `^${major + 1}`
+-  t.equal(node.satisfies(range), false, 'range does not match')
+-})
+diff --git a/npmcli-fs/test/cp/errors.js b/npmcli-fs/test/cp/errors.js
+deleted file mode 100644
+index f5694a0..0000000
+--- a/npmcli-fs/test/cp/errors.js
++++ /dev/null
+@@ -1,81 +0,0 @@
+-const t = require('tap')
+-const { ERR_FS_EISDIR } = require('../../lib/cp/errors')
+-const { constants: { errno: { EISDIR, EIO } } } = require('os')
+-const { inspect } = require('util')
+-
+-t.test('message with path and dest', async t => {
+-  const err = new ERR_FS_EISDIR({
+-    path: 'path',
+-    dest: 'dest',
+-    syscall: 'cp',
+-    code: EISDIR,
+-    message: 'failed',
+-  })
+-
+-  t.equal(err.message, `Path is a directory: cp returned ${EISDIR} (failed) path => dest`)
+-})
+-
+-t.test('message without path or dest', async t => {
+-  const err = new ERR_FS_EISDIR({
+-    syscall: 'cp',
+-    code: EISDIR,
+-    message: 'failed',
+-  })
+-
+-  t.equal(err.message, `Path is a directory: cp returned ${EISDIR} (failed)`)
+-})
+-
+-t.test('errno is alias for info.errno', async t => {
+-  const err = new ERR_FS_EISDIR({ errno: EISDIR })
+-  t.equal(err.errno, EISDIR)
+-  t.equal(err.info.errno, EISDIR)
+-  err.errno = EIO
+-  t.equal(err.errno, EIO)
+-  t.equal(err.info.errno, EIO)
+-})
+-
+-t.test('syscall is alias for info.syscall', async t => {
+-  const err = new ERR_FS_EISDIR({ syscall: 'cp' })
+-  t.equal(err.syscall, 'cp')
+-  t.equal(err.info.syscall, 'cp')
+-  err.syscall = 'readlink'
+-  t.equal(err.syscall, 'readlink')
+-  t.equal(err.info.syscall, 'readlink')
+-})
+-
+-t.test('path is alias for info.path', async t => {
+-  const err = new ERR_FS_EISDIR({ path: 'first' })
+-  t.equal(err.path, 'first')
+-  t.equal(err.info.path, 'first')
+-  err.path = 'second'
+-  t.equal(err.path, 'second')
+-  t.equal(err.info.path, 'second')
+-})
+-
+-t.test('dest is alias for info.dest', async t => {
+-  const err = new ERR_FS_EISDIR({ dest: 'first' })
+-  t.equal(err.dest, 'first')
+-  t.equal(err.info.dest, 'first')
+-  err.dest = 'second'
+-  t.equal(err.dest, 'second')
+-  t.equal(err.info.dest, 'second')
+-})
+-
+-t.test('toString', async t => {
+-  const err = new ERR_FS_EISDIR({
+-    syscall: 'cp',
+-    code: EISDIR,
+-    message: 'failed',
+-  })
+-  t.equal(err.toString(),
+-    `SystemError [ERR_FS_EISDIR]: Path is a directory: cp returned ${EISDIR} (failed)`)
+-})
+-
+-t.test('inspect', async t => {
+-  const err = new ERR_FS_EISDIR({
+-    syscall: 'cp',
+-    errno: EISDIR,
+-    message: 'failed',
+-  })
+-  t.ok(inspect(err))
+-})
+diff --git a/npmcli-fs/test/cp/index.js b/npmcli-fs/test/cp/index.js
+deleted file mode 100644
+index 0320000..0000000
+--- a/npmcli-fs/test/cp/index.js
++++ /dev/null
+@@ -1,31 +0,0 @@
+-const { stat } = require('fs/promises')
+-const { join } = require('path')
+-const t = require('tap')
+-
+-const cp = require('../../lib/cp/index.js')
+-
+-t.test('can copy a file', async (t) => {
+-  const dir = t.testdir({
+-    file: 'some random file',
+-  })
+-  const src = join(dir, 'file')
+-  const dest = join(dir, 'dest')
+-
+-  await cp(src, dest)
+-
+-  const exists = await stat(dest).then(() => true).catch(() => false)
+-  t.equal(exists, true, 'dest exits')
+-})
+-
+-t.test('can copy a directory', async (t) => {
+-  const dir = t.testdir({
+-    directory: {},
+-  })
+-  const src = join(dir, 'directory')
+-  const dest = join(dir, 'dest')
+-
+-  await cp(src, dest, { recursive: true })
+-
+-  const exists = await stat(dest).then(() => true).catch(() => false)
+-  t.equal(exists, true, 'dest exists')
+-})
+diff --git a/npmcli-fs/test/cp/polyfill.js b/npmcli-fs/test/cp/polyfill.js
+deleted file mode 100644
+index a75e80d..0000000
+--- a/npmcli-fs/test/cp/polyfill.js
++++ /dev/null
+@@ -1,380 +0,0 @@
+-const fs = require('fs')
+-const {
+-  lstatSync,
+-  mkdirSync,
+-  readdirSync,
+-  readFileSync,
+-  readlinkSync,
+-  symlinkSync,
+-  statSync,
+-  writeFileSync,
+-} = fs
+-
+-const net = require('net')
+-const { join } = require('path')
+-const { pathToFileURL } = require('url')
+-const t = require('tap')
+-
+-const cp = require('../../lib/cp/polyfill')
+-
+-const isWindows = process.platform === 'win32'
+-const tmpdir = t.testdir({
+-  'kitchen-sink': {
+-    a: {
+-      b: {
+-        'index.js': 'module.exports = { purpose: "testing copy" };',
+-        'README2.md': '# Hello',
+-      },
+-      c: {
+-        d: {
+-          'index.js': 'module.exports = { purpose: "testing copy" };',
+-          'README3.md': '# Hello',
+-        },
+-      },
+-      'index.js': 'module.exports = { purpose: "testing copy" };',
+-      'README2.md': '# Hello',
+-    },
+-    'index.js': 'module.exports = { purpose: "testing copy" };',
+-    'README.md': '# Hello',
+-  },
+-})
+-const kitchenSink = join(tmpdir, 'kitchen-sink')
+-
+-let dirc = 0
+-function nextdir () {
+-  return join(tmpdir, `copy_${++dirc}`)
+-}
+-
+-t.test('It copies a nested folder structure with files and folders.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  await cp(src, dest, { recursive: true })
+-  assertDirEquivalent(t, src, dest)
+-})
+-
+-t.test('It does not throw errors when directory is copied over and force is false.', async t => {
+-  const src = nextdir()
+-  mkdirSync(join(src, 'a', 'b'), { recursive: true })
+-  writeFileSync(join(src, 'README.md'), 'hello world', 'utf8')
+-  const dest = nextdir()
+-  await cp(src, dest, { dereference: true, recursive: true })
+-  const initialStat = lstatSync(join(dest, 'README.md'))
+-  await cp(src, dest, {
+-    dereference: true,
+-    force: false,
+-    recursive: true,
+-  })
+-
+-  // File should not have been copied over, so access times will be identical:
+-  const finalStat = lstatSync(join(dest, 'README.md'))
+-  t.equal(finalStat.ctime.getTime(), initialStat.ctime.getTime())
+-})
+-
+-t.test('It overwrites existing files if force is true.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  mkdirSync(dest, { recursive: true })
+-  writeFileSync(join(dest, 'README.md'), '# Goodbye', 'utf8')
+-
+-  await cp(src, dest, { recursive: true })
+-  assertDirEquivalent(t, src, dest)
+-  const content = readFileSync(join(dest, 'README.md'), 'utf8')
+-  t.equal(content.trim(), '# Hello')
+-})
+-
+-t.test('It can overwrite directory when dereference is true and force is false', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  const destFile = join(dest, 'a/b/README2.md')
+-  await cp(src, dest, { dereference: true, recursive: true })
+-
+-  await cp(src, dest, {
+-    dereference: true,
+-    recursive: true,
+-  })
+-  const stat = lstatSync(destFile)
+-  t.ok(stat.isFile())
+-})
+-
+-t.test('It copies file itself, rather than symlink, when dereference is true.', async t => {
+-  const src = nextdir()
+-  mkdirSync(src, { recursive: true })
+-  writeFileSync(join(src, 'foo.js'), 'foo', 'utf8')
+-  symlinkSync(join(src, 'foo.js'), join(src, 'bar.js'))
+-
+-  const dest = nextdir()
+-  mkdirSync(dest, { recursive: true })
+-  const destFile = join(dest, 'foo.js')
+-
+-  await cp(join(src, 'bar.js'), destFile, { dereference: true })
+-  const stat = lstatSync(destFile)
+-  t.ok(stat.isFile())
+-})
+-
+-t.test('It copies relative symlinks', async t => {
+-  const src = nextdir()
+-  mkdirSync(src, { recursive: true })
+-  writeFileSync(join(src, 'foo.js'), 'foo', 'utf8')
+-  symlinkSync('./foo.js', join(src, 'bar.js'))
+-
+-  const dest = nextdir()
+-  const destFile = join(dest, 'bar.js')
+-  mkdirSync(dest, { recursive: true })
+-  writeFileSync(join(dest, 'foo.js'), 'foo', 'utf8')
+-  symlinkSync('./foo.js', destFile)
+-
+-  await cp(src, dest, { recursive: true })
+-  const stat = lstatSync(destFile)
+-  t.ok(stat.isSymbolicLink())
+-})
+-
+-t.test('It returns error when src and dest are identical.', async t => {
+-  t.rejects(
+-    cp(kitchenSink, kitchenSink),
+-    { code: 'ERR_FS_CP_EINVAL' })
+-})
+-
+-t.test('It returns error if symlink in src points to location in dest.', async t => {
+-  const src = nextdir()
+-  mkdirSync(src, { recursive: true })
+-  const dest = nextdir()
+-  mkdirSync(dest)
+-  symlinkSync(dest, join(src, 'link'))
+-  await cp(src, dest, { recursive: true })
+-  t.rejects(
+-    cp(src, dest, { recursive: true }),
+-    { code: 'ERR_FS_CP_EINVAL' })
+-})
+-
+-t.test('It returns error if symlink in dest points to location in src.', async t => {
+-  const src = nextdir()
+-  mkdirSync(join(src, 'a', 'b'), { recursive: true })
+-  symlinkSync(join(src, 'a', 'b'), join(src, 'a', 'c'))
+-
+-  const dest = nextdir()
+-  mkdirSync(join(dest, 'a'), { recursive: true })
+-  symlinkSync(src, join(dest, 'a', 'c'))
+-  t.rejects(
+-    cp(src, dest, { recursive: true }),
+-    { code: 'ERR_FS_CP_SYMLINK_TO_SUBDIRECTORY' })
+-})
+-
+-t.test('It returns error if parent directory of symlink in dest points to src.', async t => {
+-  const src = nextdir()
+-  mkdirSync(join(src, 'a'), { recursive: true })
+-  const dest = nextdir()
+-  // Create symlink in dest pointing to src.
+-  const destLink = join(dest, 'b')
+-  mkdirSync(dest, { recursive: true })
+-  symlinkSync(src, destLink)
+-  t.rejects(
+-    cp(src, join(dest, 'b', 'c')),
+-    { code: 'ERR_FS_CP_EINVAL' })
+-})
+-
+-t.test('It returns error if attempt is made to copy directory to file.', async t => {
+-  const src = nextdir()
+-  mkdirSync(src, { recursive: true })
+-  const dest = join(kitchenSink, 'README.md')
+-  t.rejects(
+-    cp(src, dest),
+-    { code: 'ERR_FS_CP_DIR_TO_NON_DIR' })
+-})
+-
+-t.test('It allows file to be copied to a file path.', async t => {
+-  const srcFile = join(kitchenSink, 'README.md')
+-  const destFile = join(nextdir(), 'index.js')
+-  await cp(srcFile, destFile, { dereference: true })
+-  const stat = lstatSync(destFile)
+-  t.ok(stat.isFile())
+-})
+-
+-t.test('It returns error if directory copied without recursive flag.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  t.rejects(
+-    cp(src, dest),
+-    { code: 'ERR_FS_EISDIR' })
+-})
+-
+-t.test('It returns error if attempt is made to copy file to directory.', async t => {
+-  const src = join(kitchenSink, 'README.md')
+-  const dest = nextdir()
+-  mkdirSync(dest, { recursive: true })
+-  t.rejects(
+-    cp(src, dest),
+-    { code: 'ERR_FS_CP_NON_DIR_TO_DIR' })
+-})
+-
+-t.test('It returns error if attempt is made to copy to subdirectory of self.', async t => {
+-  const src = kitchenSink
+-  const dest = join(kitchenSink, 'a')
+-  t.rejects(
+-    cp(src, dest),
+-    { code: 'ERR_FS_CP_EINVAL' })
+-})
+-
+-t.test('It returns an error if attempt is made to copy socket.', { skip: isWindows }, async t => {
+-  const dest = nextdir()
+-  const sock = `${process.pid}.sock`
+-  const server = net.createServer()
+-  server.listen(sock)
+-  t.teardown(() => server.close())
+-  t.rejects(
+-    cp(sock, dest),
+-    { code: 'ERR_FS_CP_SOCKET' })
+-})
+-
+-t.test('It copies timestamps from src to dest if preserveTimestamps is true.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  await cp(src, dest, {
+-    preserveTimestamps: true,
+-    recursive: true,
+-  })
+-  assertDirEquivalent(t, src, dest)
+-  const srcStat = lstatSync(join(src, 'index.js'))
+-  const destStat = lstatSync(join(dest, 'index.js'))
+-  t.equal(srcStat.mtime.getTime(), destStat.mtime.getTime())
+-})
+-
+-t.test('It applies filter function.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  await cp(src, dest, {
+-    filter: (path) => {
+-      const pathStat = statSync(path)
+-      return pathStat.isDirectory() || path.endsWith('.js')
+-    },
+-    dereference: true,
+-    recursive: true,
+-  })
+-  const destEntries = []
+-  collectEntries(dest, destEntries)
+-  for (const entry of destEntries) {
+-    t.equal(
+-      entry.isDirectory() || entry.name.endsWith('.js'),
+-      true
+-    )
+-  }
+-})
+-
+-t.test('It supports async filter function.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  await cp(src, dest, {
+-    filter: async (path) => {
+-      const pathStat = statSync(path)
+-      return pathStat.isDirectory() || path.endsWith('.js')
+-    },
+-    dereference: true,
+-    recursive: true,
+-  })
+-  const destEntries = []
+-  collectEntries(dest, destEntries)
+-  for (const entry of destEntries) {
+-    t.equal(
+-      entry.isDirectory() || entry.name.endsWith('.js'),
+-      true
+-    )
+-  }
+-})
+-
+-t.test('It errors on overwrite if force is false and errorOnExist is true', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  await cp(src, dest, { recursive: true })
+-  t.rejects(
+-    cp(src, dest, {
+-      dereference: true,
+-      errorOnExist: true,
+-      force: false,
+-      recursive: true,
+-    }),
+-    { code: 'ERR_FS_CP_EEXIST' })
+-})
+-
+-t.test('It returns EEXIST error if attempt is made to copy symlink over file.', async t => {
+-  const src = nextdir()
+-  mkdirSync(join(src, 'a', 'b'), { recursive: true })
+-  symlinkSync(join(src, 'a', 'b'), join(src, 'a', 'c'))
+-
+-  const dest = nextdir()
+-  mkdirSync(join(dest, 'a'), { recursive: true })
+-  writeFileSync(join(dest, 'a', 'c'), 'hello', 'utf8')
+-  t.rejects(
+-    cp(src, dest, { recursive: true }),
+-    { code: 'EEXIST' })
+-})
+-
+-t.test('It makes file writeable when updating timestamp, if not writeable.', async t => {
+-  const src = nextdir()
+-  mkdirSync(src, { recursive: true })
+-  const dest = nextdir()
+-  mkdirSync(dest, { recursive: true })
+-  writeFileSync(join(src, 'foo.txt'), 'foo', { mode: 0o444 })
+-  await cp(src, dest, {
+-    preserveTimestamps: true,
+-    recursive: true,
+-  })
+-  assertDirEquivalent(t, src, dest)
+-  const srcStat = lstatSync(join(src, 'foo.txt'))
+-  const destStat = lstatSync(join(dest, 'foo.txt'))
+-  t.equal(srcStat.mtime.getTime(), destStat.mtime.getTime())
+-})
+-
+-t.test('It copies link if it does not point to folder in src.', async t => {
+-  const src = nextdir()
+-  mkdirSync(join(src, 'a', 'b'), { recursive: true })
+-  symlinkSync(src, join(src, 'a', 'c'))
+-  const dest = nextdir()
+-  mkdirSync(join(dest, 'a'), { recursive: true })
+-  symlinkSync(dest, join(dest, 'a', 'c'))
+-  await cp(src, dest, { recursive: true })
+-  const link = readlinkSync(join(dest, 'a', 'c'))
+-  t.equal(link, src)
+-})
+-
+-t.test('It accepts file URL as src and dest.', async t => {
+-  const src = kitchenSink
+-  const dest = nextdir()
+-  await cp(pathToFileURL(src), pathToFileURL(dest), { recursive: true })
+-  assertDirEquivalent(t, src, dest)
+-})
+-
+-t.test('It throws if options is not object.', async t => {
+-  t.rejects(
+-    () => cp('a', 'b', 'hello'),
+-    { code: 'ERR_INVALID_ARG_TYPE' })
+-})
+-
+-function assertDirEquivalent (t, dir1, dir2) {
+-  const dir1Entries = []
+-  collectEntries(dir1, dir1Entries)
+-  const dir2Entries = []
+-  collectEntries(dir2, dir2Entries)
+-  t.equal(dir1Entries.length, dir2Entries.length)
+-  for (const entry1 of dir1Entries) {
+-    const entry2 = dir2Entries.find((entry) => {
+-      return entry.name === entry1.name
+-    })
+-    t.ok(entry2, `entry ${entry2.name} not copied`)
+-    if (entry1.isFile()) {
+-      t.ok(entry2.isFile(), `${entry2.name} was not file`)
+-    } else if (entry1.isDirectory()) {
+-      t.ok(entry2.isDirectory(), `${entry2.name} was not directory`)
+-    } else if (entry1.isSymbolicLink()) {
+-      t.ok(entry2.isSymbolicLink(), `${entry2.name} was not symlink`)
+-    }
+-  }
+-}
+-
+-function collectEntries (dir, dirEntries) {
+-  const newEntries = readdirSync(dir, { withFileTypes: true })
+-  for (const entry of newEntries) {
+-    if (entry.isDirectory()) {
+-      collectEntries(join(dir, entry.name), dirEntries)
+-    }
+-  }
+-  dirEntries.push(...newEntries)
+-}
+diff --git a/npmcli-fs/test/move-file.js b/npmcli-fs/test/move-file.js
+deleted file mode 100644
+index fbb256c..0000000
+--- a/npmcli-fs/test/move-file.js
++++ /dev/null
+@@ -1,270 +0,0 @@
+-const fs = require('fs/promises')
+-const fsSync = require('fs')
+-const { join } = require('path')
+-const t = require('tap')
+-const moveFile = require('../lib/move-file.js')
+-
+-const fixture = '🦄'
+-
+-t.test('missing `source` or `destination` throws', t => t.rejects(moveFile()))
+-
+-t.test('move a file', async t => {
+-  const dir = t.testdir({
+-    src: fixture,
+-  })
+-  const dest = `${dir}/dest`
+-  await moveFile(`${dir}/src`, dest)
+-  t.equal(fsSync.readFileSync(dest, 'utf8'), fixture)
+-})
+-
+-t.test('move a directory', async t => {
+-  const dir = t.testdir({
+-    src: {
+-      one: fixture,
+-      two: fixture,
+-      sub: {
+-        three: fixture,
+-        four: fixture,
+-        five: t.fixture('symlink', './four'),
+-      },
+-      link: t.fixture('symlink', './sub'),
+-    },
+-  })
+-  const dest = `${dir}/dest`
+-  await moveFile(`${dir}/src`, dest)
+-  const destStat = fsSync.statSync(dest)
+-  t.ok(destStat.isDirectory(), 'created a directory')
+-  t.equal(fsSync.readFileSync(`${dest}/one`, 'utf8'), fixture, 'copied file one')
+-  t.equal(fsSync.readFileSync(`${dest}/two`, 'utf8'), fixture, 'copied file two')
+-  const subStat = fsSync.statSync(`${dest}/sub`)
+-  t.ok(subStat.isDirectory(), 'created the subdirectory')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/three`, 'utf8'), fixture, 'copied file three')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/four`, 'utf8'), fixture, 'copied file four')
+-  t.ok(fsSync.lstatSync(`${dest}/sub/five`).isSymbolicLink(), 'created a file symbolic link')
+-  t.equal(fsSync.realpathSync(`${dest}/sub/five`), join(dest, 'sub/four'), 'created file symlink')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/five`, 'utf8'), fixture, 'copied file four')
+-  t.ok(fsSync.lstatSync(`${dest}/link`).isSymbolicLink(), 'created a directory symbolic link')
+-})
+-
+-t.test('other types of errors fail', async t => {
+-  const randoError = new Error()
+-  randoError.code = 'ERANDO'
+-  const moveFileWithError = t.mock('../lib/move-file.js', {
+-    'fs/promises': {
+-      ...fs,
+-      rename: async () => {
+-        throw randoError
+-      },
+-    },
+-  })
+-
+-  const dir = t.testdir({
+-    src: fixture,
+-  })
+-  const dest = `${dir}/dest`
+-  await t.rejects(() => moveFileWithError(`${dir}/src`, dest), randoError)
+-})
+-
+-t.test('move a file across devices', async t => {
+-  const exdevError = new Error()
+-  exdevError.code = 'EXDEV'
+-  const moveFileWithError = t.mock('../lib/move-file.js', {
+-    'fs/promises': {
+-      ...fs,
+-      rename: async () => {
+-        throw exdevError
+-      },
+-    },
+-  })
+-
+-  const dir = t.testdir({
+-    src: fixture,
+-  })
+-  const dest = `${dir}/dest`
+-  await moveFileWithError(`${dir}/src`, dest)
+-  t.equal(fsSync.readFileSync(dest, 'utf8'), fixture)
+-})
+-
+-t.test('move a file across devices (EPERM)', async t => {
+-  const exdevError = new Error()
+-  exdevError.code = 'EPERM'
+-  const moveFileWithError = t.mock('../lib/move-file.js', {
+-    'fs/promises': {
+-      ...fs,
+-      rename: async () => {
+-        throw exdevError
+-      },
+-    },
+-  })
+-
+-  const dir = t.testdir({
+-    src: fixture,
+-  })
+-  const dest = `${dir}/dest`
+-  await moveFileWithError(`${dir}/src`, dest)
+-  t.equal(fsSync.readFileSync(dest, 'utf8'), fixture)
+-})
+-
+-t.test('move a directory across devices', async t => {
+-  const exdevError = new Error()
+-  exdevError.code = 'EXDEV'
+-  const moveFileWithError = t.mock('../lib/move-file.js', {
+-    'fs/promises': {
+-      ...fs,
+-      rename: async () => {
+-        throw exdevError
+-      },
+-    },
+-  })
+-
+-  const dir = t.testdir({
+-    src: {
+-      one: fixture,
+-      two: fixture,
+-      sub: {
+-        three: fixture,
+-        four: fixture,
+-        five: t.fixture('symlink', './four'),
+-        reallysub: {
+-          six: t.fixture('symlink', '../one'),
+-        },
+-      },
+-      link: t.fixture('symlink', './sub'),
+-      abs: t.fixture('symlink', process.cwd()),
+-    },
+-  })
+-  const dest = `${dir}/dest`
+-  await moveFileWithError(`${dir}/src`, dest)
+-  t.ok(fsSync.statSync(dest).isDirectory(), 'created a directory')
+-  t.equal(fsSync.readFileSync(`${dest}/one`, 'utf8'), fixture, 'copied file one')
+-  t.equal(fsSync.readFileSync(`${dest}/two`, 'utf8'), fixture, 'copied file two')
+-  t.ok(fsSync.statSync(`${dest}/sub`).isDirectory(), 'created the subdirectory')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/three`, 'utf8'), fixture, 'copied file three')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/four`, 'utf8'), fixture, 'copied file four')
+-  t.ok(fsSync.lstatSync(`${dest}/sub/five`).isSymbolicLink(), 'created a file symbolic link')
+-  t.equal(fsSync.readlinkSync(`${dest}/sub/five`).replace(/\\/g, '/'),
+-    './four',
+-    'created file symlink')
+-  t.ok(fsSync.lstatSync(`${dest}/link`).isSymbolicLink(), 'created a directory symbolic link')
+-  // below assertion varies for windows because junctions are absolute paths
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/link`),
+-    process.platform === 'win32' ? join(dest, 'sub\\') : './sub',
+-    'created the directory symbolic link with the correct target'
+-  )
+-  t.ok(fsSync.lstatSync(`${dest}/sub/reallysub`).isDirectory(),
+-    'created the innermost subdirectory')
+-  t.ok(fsSync.lstatSync(`${dest}/sub/reallysub/six`).isSymbolicLink(),
+-    'created the innermost symlink')
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/sub/reallysub/six`).replace(/\\/g, '/'),
+-    '../one',
+-    'created the symlink with the appropriate target'
+-  )
+-  t.ok(fsSync.lstatSync(`${dest}/abs`).isSymbolicLink(), 'created the absolute path symlink')
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/abs`),
+-    process.platform === 'win32' ? `${process.cwd()}\\` : process.cwd(),
+-    'kept the correct absolute path'
+-  )
+-})
+-
+-t.test('move a directory across devices (EPERM)', async t => {
+-  const exdevError = new Error()
+-  exdevError.code = 'EXDEV'
+-  const moveFileWithError = t.mock('../lib/move-file.js', {
+-    'fs/promises': {
+-      ...fs,
+-      rename: async () => {
+-        throw exdevError
+-      },
+-    },
+-  })
+-
+-  const dir = t.testdir({
+-    src: {
+-      one: fixture,
+-      two: fixture,
+-      sub: {
+-        three: fixture,
+-        four: fixture,
+-        five: t.fixture('symlink', './four'),
+-        reallysub: {
+-          six: t.fixture('symlink', '../one'),
+-        },
+-      },
+-      link: t.fixture('symlink', './sub'),
+-      abs: t.fixture('symlink', process.cwd()),
+-    },
+-  })
+-  const dest = `${dir}/dest`
+-  await moveFileWithError(`${dir}/src`, dest)
+-  t.ok(fsSync.statSync(dest).isDirectory(), 'created a directory')
+-  t.equal(fsSync.readFileSync(`${dest}/one`, 'utf8'), fixture, 'copied file one')
+-  t.equal(fsSync.readFileSync(`${dest}/two`, 'utf8'), fixture, 'copied file two')
+-  t.ok(fsSync.statSync(`${dest}/sub`).isDirectory(), 'created the subdirectory')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/three`, 'utf8'), fixture, 'copied file three')
+-  t.equal(fsSync.readFileSync(`${dest}/sub/four`, 'utf8'), fixture, 'copied file four')
+-  t.ok(fsSync.lstatSync(`${dest}/sub/five`).isSymbolicLink(), 'created a file symbolic link')
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/sub/five`).replace(/\\/g, '/'),
+-    './four',
+-    'created file symlink')
+-  t.ok(fsSync.lstatSync(`${dest}/link`).isSymbolicLink(), 'created a directory symbolic link')
+-  // below assertion varies for windows because junctions are absolute paths
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/link`),
+-    process.platform === 'win32' ? join(dest, 'sub\\') : './sub',
+-    'created the directory symbolic link with the correct target'
+-  )
+-  t.ok(
+-    fsSync.lstatSync(`${dest}/sub/reallysub`).isDirectory(),
+-    'created the innermost subdirectory')
+-  t.ok(
+-    fsSync.lstatSync(`${dest}/sub/reallysub/six`).isSymbolicLink(),
+-    'created the innermost symlink')
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/sub/reallysub/six`).replace(/\\/g, '/'),
+-    '../one',
+-    'created the symlink with the appropriate target'
+-  )
+-  t.ok(fsSync.lstatSync(`${dest}/abs`).isSymbolicLink(), 'created the absolute path symlink')
+-  t.equal(
+-    fsSync.readlinkSync(`${dest}/abs`),
+-    process.platform === 'win32' ? `${process.cwd()}\\` : process.cwd(),
+-    'kept the correct absolute path'
+-  )
+-})
+-
+-t.test('overwrite option', async t => {
+-  const dir = t.testdir({
+-    src: 'x',
+-    dest: 'y',
+-  })
+-  await t.rejects(moveFile(`${dir}/src`, `${dir}/dest`, { overwrite: false }))
+-  t.equal(fsSync.readFileSync(`${dir}/dest`, 'utf8'), 'y')
+-  await moveFile(`${dir}/src`, `${dir}/dest`)
+-  t.equal(fsSync.readFileSync(`${dir}/dest`, 'utf8'), 'x')
+-})
+-
+-t.test('overwrite option with non-ENOENT access error', async t => {
+-  const dir = t.testdir({
+-    src: 'x',
+-  })
+-  const er = Object.assign(new Error('its there, just bad'), {
+-    code: 'ETHEREBUTBAD',
+-  })
+-  const moveFileWithError = t.mock('../lib/move-file.js', {
+-    'fs/promises': {
+-      ...fs,
+-      access: async () => {
+-        throw er
+-      },
+-    },
+-  })
+-  await t.rejects(moveFileWithError(`${dir}/src`, `${dir}/dest`, { overwrite: false }))
+-  // it actually isn't there tho, so this fails, obviously
+-  t.throws(() => fsSync.readFileSync(`${dir}/dest`, 'utf8'), 'y')
+-  await moveFileWithError(`${dir}/src`, `${dir}/dest`)
+-  t.equal(fsSync.readFileSync(`${dir}/dest`, 'utf8'), 'x')
+-})
+diff --git a/npmcli-fs/test/readdir-scoped.js b/npmcli-fs/test/readdir-scoped.js
+deleted file mode 100644
+index 0849037..0000000
+--- a/npmcli-fs/test/readdir-scoped.js
++++ /dev/null
+@@ -1,16 +0,0 @@
+-const t = require('tap')
+-const readdir = require('../lib/readdir-scoped.js')
+-const { join } = require('path')
+-
+-t.test('readdir scoped', async (t) => {
+-  const dir = t.testdir({
+-    '@org': { x: {}, y: {} },
+-    '@scope': { x: {}, y: {} },
+-    a: { x: {}, y: {} },
+-    b: { x: {}, y: {} },
+-  })
+-  t.same(
+-    await readdir(dir),
+-    ['@org/x', '@org/y', '@scope/x', '@scope/y', 'a', 'b'].map((a) => join(a))
+-  )
+-})
+diff --git a/npmcli-fs/test/with-temp-dir.js b/npmcli-fs/test/with-temp-dir.js
+deleted file mode 100644
+index 473f167..0000000
+--- a/npmcli-fs/test/with-temp-dir.js
++++ /dev/null
+@@ -1,59 +0,0 @@
+-const { lstat } = require('fs/promises')
+-const { normalize } = require('path')
+-const t = require('tap')
+-
+-const withTempDir = require('../lib/with-temp-dir.js')
+-
+-t.test('creates a temp directory and passes it to provided function', async (t) => {
+-  // normalize is necessary until https://github.com/tapjs/libtap/pull/40 is shipped
+-  const root = normalize(t.testdir())
+-  const rootStat = await lstat(root)
+-  let tempDir
+-  await withTempDir(root, async (dir) => {
+-    tempDir = dir
+-    t.type(dir, 'string')
+-    t.ok(dir.startsWith(root), 'dir is contained within the root')
+-    const stat = await lstat(dir)
+-    t.ok(stat.isDirectory(), 'dir is an actual directory')
+-    t.equal(stat.uid, rootStat.uid, 'temp directory has same owning user')
+-    t.equal(stat.gid, rootStat.gid, 'temp directory has same owning group')
+-  })
+-  await t.rejects(lstat(tempDir), { code: 'ENOENT' }, 'temp directory was removed')
+-})
+-
+-t.test('result from provided function bubbles out', async (t) => {
+-  // normalize is necessary until https://github.com/tapjs/libtap/pull/40 is shipped
+-  const root = normalize(t.testdir())
+-  const rootStat = await lstat(root)
+-  let tempDir
+-  const result = await withTempDir(root, async (dir) => {
+-    tempDir = dir
+-    t.type(dir, 'string')
+-    t.ok(dir.startsWith(root), 'dir is contained within the root')
+-    const stat = await lstat(dir)
+-    t.ok(stat.isDirectory(), 'dir is an actual directory')
+-    t.equal(stat.uid, rootStat.uid, 'temp directory has same owning user')
+-    t.equal(stat.gid, rootStat.gid, 'temp directory has same owning group')
+-    return 'finished'
+-  })
+-  t.equal(result, 'finished', 'resolved value is returned')
+-  await t.rejects(lstat(tempDir), { code: 'ENOENT' }, 'temp directory was removed')
+-})
+-
+-t.test('cleans up when provided function rejects', async (t) => {
+-  // normalize is necessary until https://github.com/tapjs/libtap/pull/40 is shipped
+-  const root = normalize(t.testdir())
+-  const rootStat = await lstat(root)
+-  let tempDir
+-  await t.rejects(withTempDir(root, async (dir) => {
+-    tempDir = dir
+-    t.type(dir, 'string')
+-    t.ok(dir.startsWith(root), 'dir is contained within the root')
+-    const stat = await lstat(dir)
+-    t.ok(stat.isDirectory(), 'dir is an actual directory')
+-    t.equal(stat.uid, rootStat.uid, 'temp directory has same owning user')
+-    t.equal(stat.gid, rootStat.gid, 'temp directory has same owning group')
+-    throw new Error('this is bad')
+-  }), { message: 'this is bad' })
+-  await t.rejects(lstat(tempDir), { code: 'ENOENT' }, 'temp directory was removed')
+-})
+diff --git a/npmcli-move-file/.commitlintrc.js b/npmcli-move-file/.commitlintrc.js
+deleted file mode 100644
+index 5b0b1a5..0000000
+--- a/npmcli-move-file/.commitlintrc.js
++++ /dev/null
+@@ -1,10 +0,0 @@
+-/* This file is automatically added by @npmcli/template-oss. Do not edit. */
+-
+-module.exports = {
+-  extends: ['@commitlint/config-conventional'],
+-  rules: {
+-    'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'deps', 'chore']],
+-    'header-max-length': [2, 'always', 80],
+-    'subject-case': [0, 'always', ['lower-case', 'sentence-case', 'start-case']],
+-  },
+-}
+diff --git a/npmcli-move-file/.eslintrc.js b/npmcli-move-file/.eslintrc.js
+deleted file mode 100644
+index 5db9f81..0000000
+--- a/npmcli-move-file/.eslintrc.js
++++ /dev/null
+@@ -1,17 +0,0 @@
+-/* This file is automatically added by @npmcli/template-oss. Do not edit. */
+-
+-'use strict'
+-
+-const { readdirSync: readdir } = require('fs')
+-
+-const localConfigs = readdir(__dirname)
+-  .filter((file) => file.startsWith('.eslintrc.local.'))
+-  .map((file) => `./${file}`)
+-
+-module.exports = {
+-  root: true,
+-  extends: [
+-    '@npmcli',
+-    ...localConfigs,
+-  ],
+-}
+diff --git a/npmcli-move-file/.github/CODEOWNERS b/npmcli-move-file/.github/CODEOWNERS
+deleted file mode 100644
+index 2c54b0d..0000000
+--- a/npmcli-move-file/.github/CODEOWNERS
++++ /dev/null
+@@ -1,3 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-* @npm/cli-team
+diff --git a/npmcli-move-file/.github/ISSUE_TEMPLATE/bug.yml b/npmcli-move-file/.github/ISSUE_TEMPLATE/bug.yml
+deleted file mode 100644
+index d043192..0000000
+--- a/npmcli-move-file/.github/ISSUE_TEMPLATE/bug.yml
++++ /dev/null
+@@ -1,54 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Bug
+-description: File a bug/issue
+-title: "[BUG] <title>"
+-labels: [ Bug, Needs Triage ]
+-
+-body:
+-  - type: checkboxes
+-    attributes:
+-      label: Is there an existing issue for this?
+-      description: Please [search here](./issues) to see if an issue already exists for your problem.
+-      options:
+-        - label: I have searched the existing issues
+-          required: true
+-  - type: textarea
+-    attributes:
+-      label: Current Behavior
+-      description: A clear & concise description of what you're experiencing.
+-    validations:
+-      required: false
+-  - type: textarea
+-    attributes:
+-      label: Expected Behavior
+-      description: A clear & concise description of what you expected to happen.
+-    validations:
+-      required: false
+-  - type: textarea
+-    attributes:
+-      label: Steps To Reproduce
+-      description: Steps to reproduce the behavior.
+-      value: |
+-        1. In this environment...
+-        2. With this config...
+-        3. Run '...'
+-        4. See error...
+-    validations:
+-      required: false
+-  - type: textarea
+-    attributes:
+-      label: Environment
+-      description: |
+-        examples:
+-          - **npm**: 7.6.3
+-          - **Node**: 13.14.0
+-          - **OS**: Ubuntu 20.04
+-          - **platform**: Macbook Pro
+-      value: |
+-        - npm:
+-        - Node:
+-        - OS:
+-        - platform:
+-    validations:
+-      required: false
+diff --git a/npmcli-move-file/.github/ISSUE_TEMPLATE/config.yml b/npmcli-move-file/.github/ISSUE_TEMPLATE/config.yml
+deleted file mode 100644
+index d640909..0000000
+--- a/npmcli-move-file/.github/ISSUE_TEMPLATE/config.yml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-blank_issues_enabled: true
+diff --git a/npmcli-move-file/.github/dependabot.yml b/npmcli-move-file/.github/dependabot.yml
+deleted file mode 100644
+index 8da2a45..0000000
+--- a/npmcli-move-file/.github/dependabot.yml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-version: 2
+-
+-updates:
+-  - package-ecosystem: npm
+-    directory: /
+-    schedule:
+-      interval: daily
+-    allow:
+-      - dependency-type: direct
+-    versioning-strategy: increase-if-necessary
+-    commit-message:
+-      prefix: deps
+-      prefix-development: chore
+-    labels:
+-      - "Dependencies"
+diff --git a/npmcli-move-file/.github/matchers/tap.json b/npmcli-move-file/.github/matchers/tap.json
+deleted file mode 100644
+index 2c81ea9..0000000
+--- a/npmcli-move-file/.github/matchers/tap.json
++++ /dev/null
+@@ -1,32 +0,0 @@
+-{
+-  "//@npmcli/template-oss": "This file is automatically added by @npmcli/template-oss. Do not edit.",
+-  "problemMatcher": [
+-    {
+-      "owner": "tap",
+-      "pattern": [
+-        {
+-          "regexp": "^\\s*not ok \\d+ - (.*)",
+-          "message": 1
+-        },
+-        {
+-          "regexp": "^\\s*---"
+-        },
+-        {
+-          "regexp": "^\\s*at:"
+-        },
+-        {
+-          "regexp": "^\\s*line:\\s*(\\d+)",
+-          "line": 1
+-        },
+-        {
+-          "regexp": "^\\s*column:\\s*(\\d+)",
+-          "column": 1
+-        },
+-        {
+-          "regexp": "^\\s*file:\\s*(.*)",
+-          "file": 1
+-        }
+-      ]
+-    }
+-  ]
+-}
+diff --git a/npmcli-move-file/.github/workflows/audit.yml b/npmcli-move-file/.github/workflows/audit.yml
+deleted file mode 100644
+index 60bb334..0000000
+--- a/npmcli-move-file/.github/workflows/audit.yml
++++ /dev/null
+@@ -1,37 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Audit
+-
+-on:
+-  workflow_dispatch:
+-  schedule:
+-    # "At 08:00 UTC (01:00 PT) on Monday" https://crontab.guru/#0_8_*_*_1
+-    - cron: "0 8 * * 1"
+-
+-jobs:
+-  audit:
+-    name: Audit Dependencies
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund --package-lock
+-      - name: Run Audit
+-        run: npm audit
+diff --git a/npmcli-move-file/.github/workflows/ci-release.yml b/npmcli-move-file/.github/workflows/ci-release.yml
+deleted file mode 100644
+index 9cc6b28..0000000
+--- a/npmcli-move-file/.github/workflows/ci-release.yml
++++ /dev/null
+@@ -1,154 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: CI - Release
+-
+-on:
+-  workflow_call:
+-    inputs:
+-      ref:
+-        required: true
+-        type: string
+-      check-sha:
+-        required: true
+-        type: string
+-
+-jobs:
+-  lint-all:
+-    name: Lint All
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Lint All
+-          sha: ${{ inputs.check-sha }}
+-          # XXX: this does not work when using the default GITHUB_TOKEN.
+-          # Instead we post the main job url to the PR as a comment which
+-          # will link to all the other checks. To work around this we would
+-          # need to create a GitHub that would create on-demand tokens.
+-          # https://github.com/LouisBrunner/checks-action/issues/18
+-          # details_url:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          ref: ${{ inputs.ref }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Lint
+-        run: npm run lint --ignore-scripts
+-      - name: Post Lint
+-        run: npm run postlint --ignore-scripts
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ job.status }}
+-          check_id: ${{ steps.check.outputs.check_id }}
+-
+-  test-all:
+-    name: Test All - ${{ matrix.platform.name }} - ${{ matrix.node-version }}
+-    if: github.repository_owner == 'npm'
+-    strategy:
+-      fail-fast: false
+-      matrix:
+-        platform:
+-          - name: Linux
+-            os: ubuntu-latest
+-            shell: bash
+-          - name: macOS
+-            os: macos-latest
+-            shell: bash
+-          - name: Windows
+-            os: windows-latest
+-            shell: cmd
+-        node-version:
+-          - 14.17.0
+-          - 14.x
+-          - 16.13.0
+-          - 16.x
+-          - 18.0.0
+-          - 18.x
+-    runs-on: ${{ matrix.platform.os }}
+-    defaults:
+-      run:
+-        shell: ${{ matrix.platform.shell }}
+-    steps:
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Test All - ${{ matrix.platform.name }} - ${{ matrix.node-version }}
+-          sha: ${{ inputs.check-sha }}
+-          # XXX: this does not work when using the default GITHUB_TOKEN.
+-          # Instead we post the main job url to the PR as a comment which
+-          # will link to all the other checks. To work around this we would
+-          # need to create a GitHub that would create on-demand tokens.
+-          # https://github.com/LouisBrunner/checks-action/issues/18
+-          # details_url:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          ref: ${{ inputs.ref }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: ${{ matrix.node-version }}
+-      - name: Update Windows npm
+-        # node 12 and 14 ship with npm@6, which is known to fail when updating itself in windows
+-        if: matrix.platform.os == 'windows-latest' && (startsWith(matrix.node-version, '12.') || startsWith(matrix.node-version, '14.'))
+-        run: |
+-          curl -sO https://registry.npmjs.org/npm/-/npm-7.5.4.tgz
+-          tar xf npm-7.5.4.tgz
+-          cd package
+-          node lib/npm.js install --no-fund --no-audit -g ..\npm-7.5.4.tgz
+-          cd ..
+-          rmdir /s /q package
+-      - name: Install npm@7
+-        if: startsWith(matrix.node-version, '10.')
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@7
+-      - name: Install npm@latest
+-        if: ${{ !startsWith(matrix.node-version, '10.') }}
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Add Problem Matcher
+-        run: echo "::add-matcher::.github/matchers/tap.json"
+-      - name: Test
+-        run: npm test --ignore-scripts
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ job.status }}
+-          check_id: ${{ steps.check.outputs.check_id }}
+diff --git a/npmcli-move-file/.github/workflows/codeql-analysis.yml b/npmcli-move-file/.github/workflows/codeql-analysis.yml
+deleted file mode 100644
+index 66b9498..0000000
+--- a/npmcli-move-file/.github/workflows/codeql-analysis.yml
++++ /dev/null
+@@ -1,38 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: CodeQL
+-
+-on:
+-  push:
+-    branches:
+-      - main
+-      - latest
+-  pull_request:
+-    branches:
+-      - main
+-      - latest
+-  schedule:
+-    # "At 10:00 UTC (03:00 PT) on Monday" https://crontab.guru/#0_10_*_*_1
+-    - cron: "0 10 * * 1"
+-
+-jobs:
+-  analyze:
+-    name: Analyze
+-    runs-on: ubuntu-latest
+-    permissions:
+-      actions: read
+-      contents: read
+-      security-events: write
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Initialize CodeQL
+-        uses: github/codeql-action/init@v2
+-        with:
+-          languages: javascript
+-      - name: Perform CodeQL Analysis
+-        uses: github/codeql-action/analyze@v2
+diff --git a/npmcli-move-file/.github/workflows/post-dependabot.yml b/npmcli-move-file/.github/workflows/post-dependabot.yml
+deleted file mode 100644
+index 88ac403..0000000
+--- a/npmcli-move-file/.github/workflows/post-dependabot.yml
++++ /dev/null
+@@ -1,121 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Post Dependabot
+-
+-on: pull_request
+-
+-permissions:
+-  contents: write
+-
+-jobs:
+-  template-oss:
+-    name: template-oss
+-    if: github.repository_owner == 'npm' && github.actor == 'dependabot[bot]'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          ref: ${{ github.event.pull_request.head.ref }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Fetch Dependabot Metadata
+-        id: metadata
+-        uses: dependabot/fetch-metadata@v1
+-        with:
+-          github-token: ${{ secrets.GITHUB_TOKEN }}
+-
+-      # Dependabot can update multiple directories so we output which directory
+-      # it is acting on so we can run the command for the correct root or workspace
+-      - name: Get Dependabot Directory
+-        if: contains(steps.metadata.outputs.dependency-names, '@npmcli/template-oss')
+-        id: flags
+-        run: |
+-          dependabot_dir="${{ steps.metadata.outputs.directory }}"
+-          if [[ "$dependabot_dir" == "/" ]]; then
+-            echo "::set-output name=workspace::-iwr"
+-          else
+-            # strip leading slash from directory so it works as a
+-            # a path to the workspace flag
+-            echo "::set-output name=workspace::-w ${dependabot_dir#/}"
+-          fi
+-
+-      - name: Apply Changes
+-        if: steps.flags.outputs.workspace
+-        id: apply
+-        run: |
+-          npm run template-oss-apply ${{ steps.flags.outputs.workspace }}
+-          if [[ `git status --porcelain` ]]; then
+-            echo "::set-output name=changes::true"
+-          fi
+-          # This only sets the conventional commit prefix. This workflow can't reliably determine
+-          # what the breaking change is though. If a BREAKING CHANGE message is required then
+-          # this PR check will fail and the commit will be amended with stafftools
+-          if [[ "${{ steps.dependabot-metadata.outputs.update-type }}" == "version-update:semver-major" ]]; then
+-            prefix='feat!'
+-          else
+-            prefix='chore!'
+-          fi
+-          echo "::set-output name=message::$prefix: postinstall for dependabot template-oss PR"
+-
+-      # This step will fail if template-oss has made any workflow updates. It is impossible
+-      # for a workflow to update other workflows. In the case it does fail, we continue
+-      # and then try to apply only a portion of the changes in the next step
+-      - name: Push All Changes
+-        if: steps.apply.outputs.changes
+-        id: push
+-        continue-on-error: true
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          git commit -am "${{ steps.apply.outputs.message }}"
+-          git push
+-
+-      # If the previous step failed, then reset the commit and remove any workflow changes
+-      # and attempt to commit and push again. This is helpful because we will have a commit
+-      # with the correct prefix that we can then --amend with @npmcli/stafftools later.
+-      - name: Push All Changes Except Workflows
+-        if: steps.apply.outputs.changes && steps.push-all.outcome == 'failure'
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          git reset HEAD~
+-          git checkout HEAD -- .github/workflows/
+-          git clean -fd .github/workflows/
+-          git commit -am "${{ steps.apply.outputs.message }}"
+-          git push
+-
+-      # Check if all the necessary template-oss changes were applied. Since we continued
+-      # on errors in one of the previous steps, this check will fail if our follow up
+-      # only applied a portion of the changes and we need to followup manually.
+-      #
+-      # Note that this used to run `lint` and `postlint` but that will fail this action
+-      # if we've also shipped any linting changes separate from template-oss. We do
+-      # linting in another action, so we want to fail this one only if there are
+-      # template-oss changes that could not be applied.
+-      - name: Check Changes
+-        if: steps.apply.outputs.changes
+-        run: |
+-          npm exec --offline ${{ steps.flags.outputs.workspace }} -- template-oss-check
+-
+-      - name: Fail on Breaking Change
+-        if: steps.apply.outputs.changes && startsWith(steps.apply.outputs.message, 'feat!')
+-        run: |
+-          echo "This PR has a breaking change. Run 'npx -p @npmcli/stafftools gh template-oss-fix'"
+-          echo "for more information on how to fix this with a BREAKING CHANGE footer."
+-          exit 1
+diff --git a/npmcli-move-file/.github/workflows/pull-request.yml b/npmcli-move-file/.github/workflows/pull-request.yml
+deleted file mode 100644
+index 1a1d1ee..0000000
+--- a/npmcli-move-file/.github/workflows/pull-request.yml
++++ /dev/null
+@@ -1,48 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Pull Request
+-
+-on:
+-  pull_request:
+-    types:
+-      - opened
+-      - reopened
+-      - edited
+-      - synchronize
+-
+-jobs:
+-  commitlint:
+-    name: Lint Commits
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          fetch-depth: 0
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Run Commitlint on Commits
+-        id: commit
+-        continue-on-error: true
+-        run: |
+-          npx --offline commitlint -V --from origin/${{ github.base_ref }} --to ${{ github.event.pull_request.head.sha }}
+-      - name: Run Commitlint on PR Title
+-        if: steps.commit.outcome == 'failure'
+-        run: |
+-          echo ${{ github.event.pull_request.title }} | npx --offline commitlint -V
+diff --git a/npmcli-move-file/.github/workflows/release.yml b/npmcli-move-file/.github/workflows/release.yml
+deleted file mode 100644
+index 1ed3865..0000000
+--- a/npmcli-move-file/.github/workflows/release.yml
++++ /dev/null
+@@ -1,235 +0,0 @@
+-# This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-name: Release
+-
+-on:
+-  push:
+-    branches:
+-      - main
+-      - latest
+-
+-permissions:
+-  contents: write
+-  pull-requests: write
+-  checks: write
+-
+-jobs:
+-  release:
+-    outputs:
+-      pr: ${{ steps.release.outputs.pr }}
+-      releases: ${{ steps.release.outputs.releases }}
+-      release-flags: ${{ steps.release.outputs.release-flags }}
+-      branch: ${{ steps.release.outputs.pr-branch }}
+-      pr-number: ${{ steps.release.outputs.pr-number }}
+-      comment-id: ${{ steps.pr-comment.outputs.result }}
+-      check-id: ${{ steps.check.outputs.check_id }}
+-    name: Release
+-    if: github.repository_owner == 'npm'
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Release Please
+-        id: release
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          npx --offline template-oss-release-please ${{ github.ref_name }}
+-      - name: Post Pull Request Comment
+-        if: steps.release.outputs.pr-number
+-        uses: actions/github-script@v6
+-        id: pr-comment
+-        env:
+-          PR_NUMBER: ${{ steps.release.outputs.pr-number }}
+-        with:
+-          script: |
+-            const repo = { owner: context.repo.owner, repo: context.repo.repo }
+-            const issue = { ...repo, issue_number: process.env.PR_NUMBER }
+-
+-            const { data: workflow } = await github.rest.actions.getWorkflowRun({ ...repo, run_id: context.runId })
+-
+-            let body = '## Release Manager\n\n'
+-
+-            const comments = await github.paginate(github.rest.issues.listComments, issue)
+-            let commentId = comments?.find(c => c.user.login === 'github-actions[bot]' && c.body.startsWith(body))?.id
+-
+-            body += `- Release workflow run: ${workflow.html_url}`
+-            if (commentId) {
+-              await github.rest.issues.updateComment({ ...repo, comment_id: commentId, body })
+-            } else {
+-              const { data: comment } = await github.rest.issues.createComment({ ...issue, body })
+-              commentId = comment?.id
+-            }
+-
+-            return commentId
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-        if: steps.release.outputs.pr-number
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Release
+-          sha: ${{ steps.release.outputs.pr-sha }}
+-          # XXX: this does not work when using the default GITHUB_TOKEN.
+-          # Instead we post the main job url to the PR as a comment which
+-          # will link to all the other checks. To work around this we would
+-          # need to create a GitHub that would create on-demand tokens.
+-          # https://github.com/LouisBrunner/checks-action/issues/18
+-          # details_url:
+-
+-  update:
+-    needs: release
+-    outputs:
+-      sha: ${{ steps.commit.outputs.sha }}
+-      check-id: ${{ steps.check.outputs.check_id }}
+-    name: Update - Release
+-    if: github.repository_owner == 'npm' && needs.release.outputs.pr
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-        with:
+-          fetch-depth: 0
+-          ref: ${{ needs.release.outputs.branch }}
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Run Post Pull Request Actions
+-        env:
+-          RELEASE_PR_NUMBER: ${{ needs.release.outputs.pr-number }}
+-          RELEASE_COMMENT_ID: ${{ needs.release.outputs.comment-id }}
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          npm exec --offline -- template-oss-release-manager
+-          npm run rp-pull-request --ignore-scripts --if-present
+-      - name: Commit
+-        id: commit
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        run: |
+-          git commit --all --amend --no-edit || true
+-          git push --force-with-lease
+-          echo "::set-output  name=sha::$(git rev-parse HEAD)"
+-      - name: Create Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        id: check
+-
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          status: in_progress
+-          name: Release
+-          sha: ${{ steps.commit.outputs.sha }}
+-          # XXX: this does not work when using the default GITHUB_TOKEN.
+-          # Instead we post the main job url to the PR as a comment which
+-          # will link to all the other checks. To work around this we would
+-          # need to create a GitHub that would create on-demand tokens.
+-          # https://github.com/LouisBrunner/checks-action/issues/18
+-          # details_url:
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ job.status }}
+-          check_id: ${{ needs.release.outputs.check-id }}
+-
+-  ci:
+-    name: CI - Release
+-    needs: [ release, update ]
+-    if: needs.release.outputs.pr
+-    uses: ./.github/workflows/ci-release.yml
+-    with:
+-      ref: ${{ needs.release.outputs.branch }}
+-      check-sha: ${{ needs.update.outputs.sha }}
+-
+-  post-ci:
+-    needs: [ release, update, ci ]
+-    name: Post CI - Release
+-    if: github.repository_owner == 'npm' && needs.release.outputs.pr && always()
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Get Needs Result
+-        id: needs-result
+-        run: |
+-          result=""
+-          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]]; then
+-            result="failure"
+-          elif [[ "${{ contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+-            result="cancelled"
+-          else
+-            result="success"
+-          fi
+-          echo "::set-output name=result::$result"
+-      - name: Conclude Check
+-        uses: LouisBrunner/checks-action@v1.3.1
+-        if: always()
+-        with:
+-          token: ${{ secrets.GITHUB_TOKEN }}
+-          conclusion: ${{ steps.needs-result.outputs.result }}
+-          check_id: ${{ needs.update.outputs.check-id }}
+-
+-  post-release:
+-    needs: release
+-    name: Post Release - Release
+-    if: github.repository_owner == 'npm' && needs.release.outputs.releases
+-    runs-on: ubuntu-latest
+-    defaults:
+-      run:
+-        shell: bash
+-    steps:
+-      - name: Checkout
+-        uses: actions/checkout@v3
+-      - name: Setup Git User
+-        run: |
+-          git config --global user.email "npm-cli+bot@github.com"
+-          git config --global user.name "npm CLI robot"
+-      - name: Setup Node
+-        uses: actions/setup-node@v3
+-        with:
+-          node-version: 18.x
+-      - name: Install npm@latest
+-        run: npm i --prefer-online --no-fund --no-audit -g npm@latest
+-      - name: npm Version
+-        run: npm -v
+-      - name: Install Dependencies
+-        run: npm i --ignore-scripts --no-audit --no-fund
+-      - name: Run Post Release Actions
+-        env:
+-          RELEASES: ${{ needs.release.outputs.releases }}
+-        run: |
+-          npm run rp-release --ignore-scripts --if-present ${{ join(fromJSON(needs.release.outputs.release-flags), ' ') }}
+diff --git a/npmcli-move-file/.npmrc b/npmcli-move-file/.npmrc
+deleted file mode 100644
+index 529f93e..0000000
+--- a/npmcli-move-file/.npmrc
++++ /dev/null
+@@ -1,3 +0,0 @@
+-; This file is automatically added by @npmcli/template-oss. Do not edit.
+-
+-package-lock=false
+diff --git a/npmcli-move-file/.release-please-manifest.json b/npmcli-move-file/.release-please-manifest.json
+deleted file mode 100644
+index d4f6f29..0000000
+--- a/npmcli-move-file/.release-please-manifest.json
++++ /dev/null
+@@ -1,3 +0,0 @@
+-{
+-  ".": "3.0.0"
+-}
+diff --git a/npmcli-move-file/CHANGELOG.md b/npmcli-move-file/CHANGELOG.md
+deleted file mode 100644
+index 10df2f3..0000000
+--- a/npmcli-move-file/CHANGELOG.md
++++ /dev/null
+@@ -1,29 +0,0 @@
+-# Changelog
+-
+-## [3.0.0](https://github.com/npm/move-file/compare/v2.0.1...v3.0.0) (2022-10-10)
+-
+-### ⚠️ BREAKING CHANGES
+-
+-* `@npmcli/move-file` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+-
+-### Features
+-
+-* [`401b148`](https://github.com/npm/move-file/commit/401b148c4ca06282acdf96b5a75abcc5404f7bc9) [#29](https://github.com/npm/move-file/pull/29) postinstall for dependabot template-oss PR (@lukekarrys)
+-
+-## [2.0.1](https://github.com/npm/move-file/compare/v2.0.0...v2.0.1) (2022-08-15)
+-
+-
+-### Bug Fixes
+-
+-* linting ([#19](https://github.com/npm/move-file/issues/19)) ([919bbd5](https://github.com/npm/move-file/commit/919bbd5bc1691c6731af0892d2be8d489fa4b528))
+-
+-## [2.0.0](https://github.com/npm/move-file/compare/v1.1.2...v2.0.0) (2022-04-05)
+-
+-
+-### ⚠ BREAKING CHANGES
+-
+-* this drops support for node 10 and non-LTS versions of node 12 and node 14
+-
+-### Dependencies
+-
+-* @npmcli/template-oss@3.2.2 ([#13](https://github.com/npm/move-file/issues/13)) ([0be4b76](https://github.com/npm/move-file/commit/0be4b76290efe056627d4831ac2a929241b974b8))
+diff --git a/npmcli-move-file/CODE_OF_CONDUCT.md b/npmcli-move-file/CODE_OF_CONDUCT.md
+deleted file mode 100644
+index 167043c..0000000
+--- a/npmcli-move-file/CODE_OF_CONDUCT.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+-
+-All interactions in this repo are covered by the [npm Code of
+-Conduct](https://docs.npmjs.com/policies/conduct)
+-
+-The npm cli team may, at its own discretion, moderate, remove, or edit
+-any interactions such as pull requests, issues, and comments.
+diff --git a/npmcli-move-file/SECURITY.md b/npmcli-move-file/SECURITY.md
+deleted file mode 100644
+index a93106d..0000000
+--- a/npmcli-move-file/SECURITY.md
++++ /dev/null
+@@ -1,3 +0,0 @@
+-<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+-
+-Please send vulnerability reports through [hackerone](https://hackerone.com/github).
+diff --git a/npmcli-move-file/lib/index.js b/npmcli-move-file/lib/index.js
+deleted file mode 100644
+index 5789bb1..0000000
+--- a/npmcli-move-file/lib/index.js
++++ /dev/null
+@@ -1,185 +0,0 @@
+-const { dirname, join, resolve, relative, isAbsolute } = require('path')
+-const rimraf_ = require('rimraf')
+-const { promisify } = require('util')
+-const {
+-  access: access_,
+-  accessSync,
+-  copyFile: copyFile_,
+-  copyFileSync,
+-  readdir: readdir_,
+-  readdirSync,
+-  rename: rename_,
+-  renameSync,
+-  stat: stat_,
+-  statSync,
+-  lstat: lstat_,
+-  lstatSync,
+-  symlink: symlink_,
+-  symlinkSync,
+-  readlink: readlink_,
+-  readlinkSync,
+-} = require('fs')
+-
+-const access = promisify(access_)
+-const copyFile = promisify(copyFile_)
+-const readdir = promisify(readdir_)
+-const rename = promisify(rename_)
+-const stat = promisify(stat_)
+-const lstat = promisify(lstat_)
+-const symlink = promisify(symlink_)
+-const readlink = promisify(readlink_)
+-const rimraf = promisify(rimraf_)
+-const rimrafSync = rimraf_.sync
+-
+-const mkdirp = require('mkdirp')
+-
+-const pathExists = async path => {
+-  try {
+-    await access(path)
+-    return true
+-  } catch (er) {
+-    return er.code !== 'ENOENT'
+-  }
+-}
+-
+-const pathExistsSync = path => {
+-  try {
+-    accessSync(path)
+-    return true
+-  } catch (er) {
+-    return er.code !== 'ENOENT'
+-  }
+-}
+-
+-const moveFile = async (source, destination, options = {}, root = true, symlinks = []) => {
+-  if (!source || !destination) {
+-    throw new TypeError('`source` and `destination` file required')
+-  }
+-
+-  options = {
+-    overwrite: true,
+-    ...options,
+-  }
+-
+-  if (!options.overwrite && await pathExists(destination)) {
+-    throw new Error(`The destination file exists: ${destination}`)
+-  }
+-
+-  await mkdirp(dirname(destination))
+-
+-  try {
+-    await rename(source, destination)
+-  } catch (error) {
+-    if (error.code === 'EXDEV' || error.code === 'EPERM') {
+-      const sourceStat = await lstat(source)
+-      if (sourceStat.isDirectory()) {
+-        const files = await readdir(source)
+-        await Promise.all(files.map((file) =>
+-          moveFile(join(source, file), join(destination, file), options, false, symlinks)
+-        ))
+-      } else if (sourceStat.isSymbolicLink()) {
+-        symlinks.push({ source, destination })
+-      } else {
+-        await copyFile(source, destination)
+-      }
+-    } else {
+-      throw error
+-    }
+-  }
+-
+-  if (root) {
+-    await Promise.all(symlinks.map(async ({ source: symSource, destination: symDestination }) => {
+-      let target = await readlink(symSource)
+-      // junction symlinks in windows will be absolute paths, so we need to
+-      // make sure they point to the symlink destination
+-      if (isAbsolute(target)) {
+-        target = resolve(symDestination, relative(symSource, target))
+-      }
+-      // try to determine what the actual file is so we can create the correct
+-      // type of symlink in windows
+-      let targetStat = 'file'
+-      try {
+-        targetStat = await stat(resolve(dirname(symSource), target))
+-        if (targetStat.isDirectory()) {
+-          targetStat = 'junction'
+-        }
+-      } catch {
+-        // targetStat remains 'file'
+-      }
+-      await symlink(
+-        target,
+-        symDestination,
+-        targetStat
+-      )
+-    }))
+-    await rimraf(source)
+-  }
+-}
+-
+-const moveFileSync = (source, destination, options = {}, root = true, symlinks = []) => {
+-  if (!source || !destination) {
+-    throw new TypeError('`source` and `destination` file required')
+-  }
+-
+-  options = {
+-    overwrite: true,
+-    ...options,
+-  }
+-
+-  if (!options.overwrite && pathExistsSync(destination)) {
+-    throw new Error(`The destination file exists: ${destination}`)
+-  }
+-
+-  mkdirp.sync(dirname(destination))
+-
+-  try {
+-    renameSync(source, destination)
+-  } catch (error) {
+-    if (error.code === 'EXDEV' || error.code === 'EPERM') {
+-      const sourceStat = lstatSync(source)
+-      if (sourceStat.isDirectory()) {
+-        const files = readdirSync(source)
+-        for (const file of files) {
+-          moveFileSync(join(source, file), join(destination, file), options, false, symlinks)
+-        }
+-      } else if (sourceStat.isSymbolicLink()) {
+-        symlinks.push({ source, destination })
+-      } else {
+-        copyFileSync(source, destination)
+-      }
+-    } else {
+-      throw error
+-    }
+-  }
+-
+-  if (root) {
+-    for (const { source: symSource, destination: symDestination } of symlinks) {
+-      let target = readlinkSync(symSource)
+-      // junction symlinks in windows will be absolute paths, so we need to
+-      // make sure they point to the symlink destination
+-      if (isAbsolute(target)) {
+-        target = resolve(symDestination, relative(symSource, target))
+-      }
+-      // try to determine what the actual file is so we can create the correct
+-      // type of symlink in windows
+-      let targetStat = 'file'
+-      try {
+-        targetStat = statSync(resolve(dirname(symSource), target))
+-        if (targetStat.isDirectory()) {
+-          targetStat = 'junction'
+-        }
+-      } catch {
+-        // targetStat remains 'file'
+-      }
+-      symlinkSync(
+-        target,
+-        symDestination,
+-        targetStat
+-      )
+-    }
+-    rimrafSync(source)
+-  }
+-}
+-
+-module.exports = moveFile
+-module.exports.sync = moveFileSync
+diff --git a/npmcli-move-file/release-please-config.json b/npmcli-move-file/release-please-config.json
+deleted file mode 100644
+index 73d1e35..0000000
+--- a/npmcli-move-file/release-please-config.json
++++ /dev/null
+@@ -1,36 +0,0 @@
+-{
+-  "exclude-packages-from-root": true,
+-  "group-pull-request-title-pattern": "chore: release ${version}",
+-  "pull-request-title-pattern": "chore: release${component} ${version}",
+-  "changelog-sections": [
+-    {
+-      "type": "feat",
+-      "section": "Features",
+-      "hidden": false
+-    },
+-    {
+-      "type": "fix",
+-      "section": "Bug Fixes",
+-      "hidden": false
+-    },
+-    {
+-      "type": "docs",
+-      "section": "Documentation",
+-      "hidden": false
+-    },
+-    {
+-      "type": "deps",
+-      "section": "Dependencies",
+-      "hidden": false
+-    },
+-    {
+-      "type": "chore",
+-      "hidden": true
+-    }
+-  ],
+-  "packages": {
+-    ".": {
+-      "package-name": ""
+-    }
+-  }
+-}

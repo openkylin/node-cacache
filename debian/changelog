@@ -1,3 +1,9 @@
+node-cacache (17.0.3+~cs10.3.7-ok1) nile; urgency=medium
+
+  * update upstream version 
+
+ -- liyang <liyang01@kylinos.cn>  Tue, 18 Jun 2024 14:27:55 +0800
+
 node-cacache (15.0.5+~cs13.9.21-ok1) yangtze; urgency=medium
 
   * Build for openKylin.

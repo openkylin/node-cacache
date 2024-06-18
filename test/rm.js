@@ -1,17 +1,12 @@
 'use strict'
 
-const util = require('util')
-
-const fs = require('fs')
+const fs = require('fs/promises')
 const index = require('../lib/entry-index')
 const path = require('path')
-const Tacks = require('tacks')
-const { test } = require('tap')
-const testDir = require('./util/test-dir')(__filename)
+const t = require('tap')
 const ssri = require('ssri')
 
-const CacheContent = require('./util/cache-content')
-const CACHE = path.join(testDir, 'cache')
+const CacheContent = require('./fixtures/cache-content')
 const CONTENT = Buffer.from('foobarbaz')
 const KEY = 'my-test-key'
 const INTEGRITY = ssri.fromData(CONTENT)
@@ -22,63 +17,38 @@ const get = require('..').get
 
 const rm = require('..').rm
 
-const readFile = util.promisify(fs.readFile)
-const mkdir = util.promisify(fs.mkdir)
-const writeFile = util.promisify(fs.writeFile)
-const readdir = util.promisify(fs.readdir)
-
-test('rm.entry removes entries, not content', (t) => {
-  const fixture = new Tacks(
-    CacheContent({
-      [INTEGRITY]: CONTENT
-    })
-  )
-  fixture.create(CACHE)
-  return index
-    .insert(CACHE, KEY, INTEGRITY, {
-      metadata: METADATA
-    })
-    .then(() => {
-      t.equal(rm, rm.entry, 'rm is an alias for rm.entry')
-      return rm.entry(CACHE, KEY)
-    })
-    .then(() => {
-      return get(CACHE, KEY)
-    })
-    .then((res) => {
-      throw new Error('unexpected success')
-    })
-    .catch((err) => {
-      if (err.code === 'ENOENT') {
-        t.match(err.message, KEY, 'entry no longer accessible')
-        return
-      }
-      throw err
-    })
-    .then(() => {
-      return readFile(contentPath(CACHE, INTEGRITY))
-    })
-    .then((data) => {
-      t.deepEqual(data, CONTENT, 'content remains in cache')
-    })
+const cacheContent = CacheContent({
+  [INTEGRITY]: CONTENT,
 })
 
-test('rm.content removes content, not entries', (t) => {
-  const fixture = new Tacks(
-    CacheContent({
-      [INTEGRITY]: CONTENT
-    })
+t.test('rm.entry removes entries, not content', async t => {
+  const cache = t.testdir(cacheContent)
+  await index.insert(cache, KEY, INTEGRITY, { metadata: METADATA })
+  t.equal(rm, rm.entry, 'rm is an alias for rm.entry')
+  await rm.entry(cache, KEY)
+  await t.rejects(
+    get(cache, KEY),
+    {
+      code: 'ENOENT',
+      message: new RegExp(KEY),
+    },
+    'entry no longer accessible'
   )
-  fixture.create(CACHE)
+  const data = await fs.readFile(contentPath(cache, INTEGRITY))
+  t.same(data, CONTENT, 'content remains in cache')
+})
+
+t.test('rm.content removes content, not entries', (t) => {
+  const cache = t.testdir(cacheContent)
   return index
-    .insert(CACHE, KEY, INTEGRITY, {
-      metadata: METADATA
+    .insert(cache, KEY, INTEGRITY, {
+      metadata: METADATA,
     })
     .then(() => {
-      return rm.content(CACHE, INTEGRITY)
+      return rm.content(cache, INTEGRITY)
     })
     .then(() => {
-      return get(CACHE, KEY)
+      return get(cache, KEY)
     })
     .then((res) => {
       throw new Error('unexpected success')
@@ -91,7 +61,7 @@ test('rm.content removes content, not entries', (t) => {
       throw err
     })
     .then(() => {
-      return readFile(contentPath(CACHE, INTEGRITY))
+      return fs.readFile(contentPath(cache, INTEGRITY))
     })
     .then(() => {
       throw new Error('unexpected success')
@@ -105,34 +75,16 @@ test('rm.content removes content, not entries', (t) => {
     })
 })
 
-test('rm.all deletes content and index dirs', (t) => {
-  const fixture = new Tacks(
-    CacheContent({
-      [INTEGRITY]: CONTENT
-    })
+t.test('rm.all deletes content and index dirs', async t => {
+  const cache = t.testdir(cacheContent)
+  await index.insert(cache, KEY, INTEGRITY, { metadata: METADATA })
+  await fs.mkdir(path.join(cache, 'tmp'))
+  await fs.writeFile(path.join(cache, 'other.js'), 'hi')
+  await rm.all(cache)
+  const files = await fs.readdir(cache)
+  t.same(
+    files.sort(),
+    ['other.js', 'tmp'],
+    'removes content and index directories without touching other stuff'
   )
-  fixture.create(CACHE)
-  return index
-    .insert(CACHE, KEY, INTEGRITY, {
-      metadata: METADATA
-    })
-    .then(() => {
-      return mkdir(path.join(CACHE, 'tmp'))
-    })
-    .then(() => {
-      return writeFile(path.join(CACHE, 'other.js'), 'hi')
-    })
-    .then(() => {
-      return rm.all(CACHE)
-    })
-    .then(() => {
-      return readdir(CACHE)
-    })
-    .then((files) => {
-      t.deepEqual(
-        files.sort(),
-        ['other.js', 'tmp'],
-        'removes content and index directories without touching other stuff'
-      )
-    })
 })

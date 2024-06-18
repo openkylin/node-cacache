@@ -1,6 +1,162 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+## [17.0.3](https://github.com/npm/cacache/compare/v17.0.2...v17.0.3) (2022-12-07)
+
+### Dependencies
+
+* [`0dc98f7`](https://github.com/npm/cacache/commit/0dc98f7ca0940ea010ef3ba5257887e36083b3a2) [#156](https://github.com/npm/cacache/pull/156) bump minipass from 3.3.6 to 4.0.0
+
+## [17.0.2](https://github.com/npm/cacache/compare/v17.0.1...v17.0.2) (2022-11-04)
+
+### Bug Fixes
+
+* [`4a7382f`](https://github.com/npm/cacache/commit/4a7382f5e6c72c59587d45167346c1b6e81a3cde) [#152](https://github.com/npm/cacache/pull/152) replace @npmcli/move-file with @npmcli/fs (@lukekarrys)
+
+## [17.0.1](https://github.com/npm/cacache/compare/v17.0.0...v17.0.1) (2022-10-17)
+
+### Dependencies
+
+* [`d3515de`](https://github.com/npm/cacache/commit/d3515dec8ee6305d564389f5e52363637666f718) [#146](https://github.com/npm/cacache/pull/146) bump unique-filename from 2.0.1 to 3.0.0
+* [`e57ebd9`](https://github.com/npm/cacache/commit/e57ebd9edcd4ac93df7ccbe1eee66a7a2c41c0a7) [#143](https://github.com/npm/cacache/pull/143) bump ssri from 9.0.1 to 10.0.0
+* [`9dd537a`](https://github.com/npm/cacache/commit/9dd537a5ab53f5f84e16ff9e69ebd9f28e3f8c54) [#144](https://github.com/npm/cacache/pull/144) bump @npmcli/move-file from 2.0.1 to 3.0.0
+
+## [17.0.0](https://github.com/npm/cacache/compare/v16.1.3...v17.0.0) (2022-10-13)
+
+### ⚠️ BREAKING CHANGES
+
+* this module no longer attempts to change file ownership automatically
+* this package is now async only, all synchronous methods have been removed
+* `cacache` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+* [`479b135`](https://github.com/npm/cacache/commit/479b1352a72ea3a6bc403545e269d3add985c6ee) [#141](https://github.com/npm/cacache/pull/141) do not alter file ownership (#141) (@nlf)
+* [`f57bb4d`](https://github.com/npm/cacache/commit/f57bb4d3ec6147843fac673c6578c3d231f336df) [#140](https://github.com/npm/cacache/pull/140) remove sync methods (#140) (@nlf)
+* [`cfebcde`](https://github.com/npm/cacache/commit/cfebcdea59e3fc1ff33fbe4b3fa6f05aa765326f) [#133](https://github.com/npm/cacache/pull/133) postinstall for dependabot template-oss PR (@lukekarrys)
+
+## [16.1.3](https://github.com/npm/cacache/compare/v16.1.2...v16.1.3) (2022-08-23)
+
+
+### Dependencies
+
+* bump unique-filename from 1.1.1 to 2.0.0 ([#123](https://github.com/npm/cacache/issues/123)) ([6235554](https://github.com/npm/cacache/commit/6235554e46d19a9d9af25f87aa797fb85efc9519))
+
+## [16.1.2](https://github.com/npm/cacache/compare/v16.1.1...v16.1.2) (2022-08-15)
+
+
+### Bug Fixes
+
+* linting ([#121](https://github.com/npm/cacache/issues/121)) ([a683cff](https://github.com/npm/cacache/commit/a683cffdfd956e1a4ac0e5ccbfa30615192e1ea0))
+
+## [16.1.1](https://github.com/npm/cacache/compare/v16.1.0...v16.1.1) (2022-06-02)
+
+
+### Bug Fixes
+
+* **read:** change lstat to stat to correctly evaluate file size ([#114](https://github.com/npm/cacache/issues/114)) ([e3a2928](https://github.com/npm/cacache/commit/e3a2928e053e19fb6e8e73946ffe3d212e402ba7))
+
+## [16.1.0](https://github.com/npm/cacache/compare/v16.0.7...v16.1.0) (2022-05-17)
+
+
+### Features
+
+* allow external integrity/size source ([#110](https://github.com/npm/cacache/issues/110)) ([61785e1](https://github.com/npm/cacache/commit/61785e106765f4b44041de318f6e387d93759e60))
+
+
+### Bug Fixes
+
+* move to async functions where possible ([#106](https://github.com/npm/cacache/issues/106)) ([71d4389](https://github.com/npm/cacache/commit/71d4389ff8a35330c3fedce97761094e243d4faf))
+
+### [16.0.7](https://github.com/npm/cacache/compare/v16.0.6...v16.0.7) (2022-04-27)
+
+
+### Bug Fixes
+
+* **put:** don't flush if an error happened ([e870016](https://github.com/npm/cacache/commit/e8700167e036f392e5554af2d582caa17e4e7237))
+* remove disposer ([76ab648](https://github.com/npm/cacache/commit/76ab64857b6874bc54d542ddd483c526434c0b9b))
+* remove fs.copyFile checks ([90776fd](https://github.com/npm/cacache/commit/90776fd4a6c5362ea56a979b9611bdf4391e1fd8))
+
+### [16.0.6](https://github.com/npm/cacache/compare/v16.0.5...v16.0.6) (2022-04-21)
+
+
+### Bug Fixes
+
+* normalize win32 paths before globbing ([4bdd5d5](https://github.com/npm/cacache/commit/4bdd5d5ce21147d67a46b6d2e1ec65007b31705c))
+
+### [16.0.5](https://github.com/npm/cacache/compare/v16.0.4...v16.0.5) (2022-04-20)
+
+
+### Dependencies
+
+* bump glob from 7.2.0 to 8.0.1 ([#98](https://github.com/npm/cacache/issues/98)) ([74a11f9](https://github.com/npm/cacache/commit/74a11f9f5a1543d593217078a5357707680e2bb1))
+
+### [16.0.4](https://github.com/npm/cacache/compare/v16.0.3...v16.0.4) (2022-04-05)
+
+
+### Dependencies
+
+* bump @npmcli/move-file from 1.1.2 to 2.0.0 ([#94](https://github.com/npm/cacache/issues/94)) ([f3d64f6](https://github.com/npm/cacache/commit/f3d64f6c238f99433df260fe52081177bdedee86))
+* bump ssri from 8.0.1 to 9.0.0 ([#95](https://github.com/npm/cacache/issues/95)) ([fb44f5f](https://github.com/npm/cacache/commit/fb44f5f6bf85f9ee45ba52eb63088b108eca076d))
+
+### [16.0.3](https://github.com/npm/cacache/compare/v16.0.2...v16.0.3) (2022-03-22)
+
+
+### Dependencies
+
+* bump @npmcli/fs from 1.1.1 to 2.1.0 ([#88](https://github.com/npm/cacache/issues/88)) ([9c9c91c](https://github.com/npm/cacache/commit/9c9c91ce13b941a12c73b95940c5d0b4f4dbf3d0))
+* update lru-cache requirement from ^7.5.1 to ^7.7.1 ([#87](https://github.com/npm/cacache/issues/87)) ([800079f](https://github.com/npm/cacache/commit/800079fc5fd18e624bcc53dae3b5f432033e1096))
+
+### [16.0.2](https://www.github.com/npm/cacache/compare/v16.0.1...v16.0.2) (2022-03-16)
+
+
+### Bug Fixes
+
+* use lru-cache.clear ([#80](https://www.github.com/npm/cacache/issues/80)) ([a48e020](https://www.github.com/npm/cacache/commit/a48e020ca86d28a569578617cc4c7efb76aa8194))
+
+### [16.0.1](https://www.github.com/npm/cacache/compare/v16.0.0...v16.0.1) (2022-03-15)
+
+
+### Dependencies
+
+* bump lru-cache from 6.0.0 to 7.5.1 ([#77](https://www.github.com/npm/cacache/issues/77)) ([6a3a886](https://www.github.com/npm/cacache/commit/6a3a8863f079aaccb623c4f8d933c485b82e0671))
+* update glob requirement from ^7.1.4 to ^7.2.0 ([#74](https://www.github.com/npm/cacache/issues/74)) ([27f1a63](https://www.github.com/npm/cacache/commit/27f1a63cc14de34585330c7ad50f5ae00b3b5b54))
+* update minipass requirement from ^3.1.1 to ^3.1.6 ([#76](https://www.github.com/npm/cacache/issues/76)) ([954a430](https://www.github.com/npm/cacache/commit/954a43056fd01ca3a359581dfe32cdfd0ada5f8d))
+
+## [16.0.0](https://www.github.com/npm/cacache/compare/v15.3.0...v16.0.0) (2022-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* this drops support for node10 and non-LTS versions of node12 and node14.
+
+### Bug Fixes
+
+* move files to lib ([cfa4a79](https://www.github.com/npm/cacache/commit/cfa4a7974e1a2b4c4d00613afe20b1925fbe639a))
+
+
+### Dependencies
+
+* @npmcli/template-oss@2.9.2 ([6e051a7](https://www.github.com/npm/cacache/commit/6e051a782e18288c51914562ae93b4ce52a81ad1))
+* update @npmcli/move-file requirement from ^1.0.1 to ^1.1.2 ([#70](https://www.github.com/npm/cacache/issues/70)) ([ddf797a](https://www.github.com/npm/cacache/commit/ddf797a1906e2b285165e544d5ae29a4bb1514ef))
+* update fs-minipass requirement from ^2.0.0 to ^2.1.0 ([#72](https://www.github.com/npm/cacache/issues/72)) ([07a5aa1](https://www.github.com/npm/cacache/commit/07a5aa17a8d2245d69f613f9351d4cf84865ade8))
+* update minipass-pipeline requirement from ^1.2.2 to ^1.2.4 ([#69](https://www.github.com/npm/cacache/issues/69)) ([372d1a1](https://www.github.com/npm/cacache/commit/372d1a1533aaa8ea37c4cb98f99f40461c9bddac))
+* update mkdirp requirement from ^1.0.3 to ^1.0.4 ([#73](https://www.github.com/npm/cacache/issues/73)) ([5fbd50f](https://www.github.com/npm/cacache/commit/5fbd50f1000e8065d754a7c8c89c1c9747532618))
+* update tar requirement from ^6.0.2 to ^6.1.11 ([#71](https://www.github.com/npm/cacache/issues/71)) ([4d35625](https://www.github.com/npm/cacache/commit/4d3562565dc52fe51cc5de2fbffceddb63f65118))
+
+## [15.2.0](https://github.com/npm/cacache/releases/v15.2.0) (2021-05-25)
+
+* [8892a92](https://github.com/npm/cacache/commit/8892a92) add a validateEntry option to compact
+* [460b951](https://github.com/npm/cacache/commit/460b951) allow fully deleting indexes
+
+## [15.1.0](https://github.com/npm/cacache/compare/v15.0.6...v15.1.0) (2021-05-19)
+
+
+### Features
+
+* allow formatEntry to keep entries with no integrity value ([930f531](https://github.com/npm/cacache/commit/930f5313825a84277c531defe53696b8c9f4ef70)), closes [#53](https://github.com/npm/cacache/issues/53)
+* expose index.insert, implement and expose index.compact ([c4efb74](https://github.com/npm/cacache/commit/c4efb7427cd40694933a46ef3eb59d32ce4d0eed))
+
+### [15.0.6](https://github.com/npm/cacache/compare/v15.0.5...v15.0.6) (2021-03-22)
 
 ### [15.0.5](https://github.com/npm/cacache/compare/v15.0.4...v15.0.5) (2020-07-11)
 

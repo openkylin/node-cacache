@@ -1,3 +1,9 @@
+node-cacache (17.0.3+~cs10.3.7-ok3) nile; urgency=medium
+
+  * Rebuild for pass test.
+
+ -- liubo01 <liubo01@kylinos.cn>  Tue, 13 Aug 2024 15:04:40 +0800
+
 node-cacache (17.0.3+~cs10.3.7-ok2) nile; urgency=medium
 
   * rebuild

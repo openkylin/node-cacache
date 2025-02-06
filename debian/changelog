@@ -2,7 +2,7 @@ node-cacache (17.0.3+~cs10.3.7-ok4) nile; urgency=medium
 
   * 恢复上游代码合入时误删除的文件(删除补丁文件0001-apply-patches.patch).
 
- -- Li Weinan <liweinan@kylinos.cn>  Fir, 24 Jan 2025 11:04:12 +0800
+ -- Li Weinan <liweinan@kylinos.cn>  Fri, 24 Jan 2025 11:04:12 +0800
  
 node-cacache (17.0.3+~cs10.3.7-ok3) nile; urgency=medium
 
